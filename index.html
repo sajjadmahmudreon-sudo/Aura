@@ -1,249 +1,206 @@
-create extension if not exists pgcrypto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f4ee">
+<title>BAUL-ISH — Wear Your Own Story</title>
+<meta name="description" content="Discover premium everyday streetwear by BAUL-ISH.">
+<style>
+:root{--bg:#f6f4ee;--ink:#191916;--muted:#77766f;--line:#dedbd2;--accent:#8b342f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+header{height:65px;padding:0 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;background:#f6f4eef0;backdrop-filter:blur(12px)}
+.logo{font-size:21px;font-weight:900;letter-spacing:3px}
+.logo span{font-weight:400}
+nav{display:flex;align-items:center;gap:18px}
+nav button{border:0;background:none;font-size:11px;letter-spacing:1px}
+main{max-width:1200px;margin:auto;padding:0 6%}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:55px 0 65px}
+.kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(48px,8vw,92px);letter-spacing:-5px;line-height:.91;margin:20px 0}
+.hero p{font-size:14px;line-height:1.9;color:var(--muted);max-width:360px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:white;padding:14px 22px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.btn.outline{background:transparent;color:var(--ink)}
+.hero-image{height:410px;background:#e6e1d6;overflow:hidden;animation:reveal .8s ease}
+.hero-image img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.marquee{padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;letter-spacing:3px;text-align:center}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin:50px 0 20px}
+.section-title h2{font-size:28px;letter-spacing:-1px;margin:8px 0 0}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.product{min-width:0;cursor:pointer}
+.product-photo{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#e7e3d9}
+.product h3{font-size:14px;margin:12px 0 7px}
+.product p{font-size:13px;margin:0 0 10px}
+.muted{color:var(--muted)}
+.old{color:var(--muted);text-decoration:line-through;font-size:11px;margin-left:5px}
+.product .btn{width:100%;margin:5px 0 12px}
+.price{font-weight:bold}
+.hidden{display:none!important}
+#details,#cart{padding:35px 0}
+.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:20px}
+.detail-image{width:100%;max-height:540px;object-fit:cover;background:#e6e1d6}
+.detail-info h2{font-size:35px;letter-spacing:-1px}
+.detail-info p{line-height:1.8;color:var(--muted);font-size:14px}
+select,input{width:100%;padding:13px;border:1px solid var(--line);background:transparent;margin:7px 0 16px}
+label{font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.detail-info .btn{width:100%;margin:7px 0}
+.cart-item{border-bottom:1px solid var(--line);padding:18px 0;display:flex;justify-content:space-between;gap:10px;font-size:13px}
+footer{background:var(--ink);color:var(--bg);margin-top:60px;padding:35px 6%;font-size:12px}
+footer p{line-height:1.8;color:#c7c3ba}
+.notice{position:fixed;bottom:18px;left:5%;right:5%;padding:15px;background:var(--ink);color:white;font-size:13px;z-index:30;display:none}
+@media(max-width:650px){
+ header{padding:0 4%;height:58px}.logo{font-size:17px;letter-spacing:2px}nav{gap:8px}nav button{font-size:10px;padding:4px}
+ main{padding:0 4%}.hero{grid-template-columns:1fr;padding:35px 0 40px;gap:22px}.hero h1{font-size:65px;letter-spacing:-4px}
+ .hero-image{height:280px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .section-title h2{font-size:23px}.detail-layout{grid-template-columns:1fr;gap:15px}.detail-info h2{font-size:29px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">BAUL<span>-ISH</span></div>
+  <nav>
+    <button onclick="showSection('collection')">SHOP</button>
+    <button onclick="showSection('cart')">BAG (<span id="bagCount">0</span>)</button>
+  </nav>
+</header>
 
-create table if not exists public.profiles (
-  id uuid primary key references auth.users(id) on delete cascade,
-  is_admin boolean not null default false
-);
+<main>
+<section id="home">
+  <div class="hero">
+    <div>
+      <div class="kicker">Independent streetwear · Bangladesh</div>
+      <h1>Wear your<br>own story.</h1>
+      <p>Art in everyday form. Thoughtful essentials for those who dress with individuality, comfort, and character.</p>
+      <button class="btn" onclick="showSection('collection')">Explore collection ↗</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85" alt="Minimal everyday T-shirt">
+    </div>
+  </div>
+  <div class="marquee">LESS NOISE · MORE MEANING · BAUL-ISH STREETWEAR</div>
+</section>
 
-create table if not exists public.products (
-  id uuid primary key default gen_random_uuid(),
-  name text not null,
-  slug text unique not null,
-  description text default '',
-  category text default 'Clothing',
-  image_url text default '',
-  price numeric(10,2) not null default 0,
-  offer_price numeric(10,2),
-  variants jsonb not null default '{"M":{"price":490,"stock":0},"L":{"price":490,"stock":0},"XL":{"price":540,"stock":0}}',
-  featured boolean not null default false,
-  active boolean not null default true,
-  created_at timestamptz not null default now()
-);
+<section id="collection">
+  <div class="section-title"><div><div class="kicker">The collection</div><h2>Considered essentials.</h2></div></div>
+  <div class="products" id="productGrid"></div>
+</section>
 
-create table if not exists public.orders (
-  id uuid primary key default gen_random_uuid(),
-  customer jsonb not null,
-  payment_method text not null default 'COD',
-  payment_status text not null default 'unpaid',
-  status text not null default 'pending',
-  subtotal numeric(10,2) not null,
-  delivery_fee numeric(10,2) not null default 70,
-  total numeric(10,2) not null,
-  created_at timestamptz not null default now()
-);
+<section id="details" class="hidden"></section>
 
-create table if not exists public.order_items (
-  id uuid primary key default gen_random_uuid(),
-  order_id uuid not null references public.orders(id) on delete cascade,
-  product_id uuid references public.products(id) on delete set null,
-  product_name text not null,
-  size text not null,
-  quantity integer not null,
-  unit_price numeric(10,2) not null
-);
+<section id="cart" class="hidden">
+  <button class="btn outline" onclick="showSection('collection')">← Continue shopping</button>
+  <div class="section-title"><div><div class="kicker">Your selection</div><h2>Your bag.</h2></div></div>
+  <div id="cartItems"></div>
+  <h3 id="cartTotal">Total: ৳0</h3>
+  <p class="muted">Delivery fee: ৳70 (sample rate; update before launch).</p>
+  <h3>Checkout</h3>
+  <form id="checkout">
+    <label>Full name</label><input name="name" required>
+    <label>Phone number</label><input name="phone" inputmode="tel" required>
+    <label>Delivery address</label><input name="address" required>
+    <label>Payment method</label>
+    <select name="payment"><option>Cash on Delivery</option><option disabled>bKash — configure after backend setup</option><option disabled>Nagad — configure after backend setup</option><option disabled>Bank Transfer — configure after backend setup</option></select>
+    <button class="btn" type="submit">Place demo order</button>
+    <p class="muted">Demo only: this GitHub Pages version does not transmit or save orders to a secure database.</p>
+  </form>
+</section>
+</main>
 
-create table if not exists public.store_settings (
-  key text primary key,
-  value jsonb not null default '{}'::jsonb
-);
+<footer>
+  <div class="logo">BAUL<span>-ISH</span></div>
+  <p>Wear your own story.</p>
+  <p>Premium everyday streetwear. Bangladesh.</p>
+  <p>Contact · Shipping · Returns · Privacy</p>
+</footer>
+<div id="notice" class="notice"></div>
 
-create or replace function public.is_admin()
-returns boolean
-language sql stable security definer
-set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and is_admin = true
-  );
-$$;
-
-create or replace function public.new_profile()
-returns trigger language plpgsql security definer
-set search_path = public
-as $$
-begin
-  insert into public.profiles(id) values(new.id)
-  on conflict (id) do nothing;
-  return new;
-end;
-$$;
-
-drop trigger if exists create_profile_after_signup on auth.users;
-create trigger create_profile_after_signup
-after insert on auth.users
-for each row execute procedure public.new_profile();
-
-alter table public.profiles enable row level security;
-alter table public.products enable row level security;
-alter table public.orders enable row level security;
-alter table public.order_items enable row level security;
-alter table public.store_settings enable row level security;
-
-create policy "Read active products" on public.products
-for select to anon, authenticated using (active = true or public.is_admin());
-
-create policy "Admin manages products" on public.products
-for all to authenticated using (public.is_admin())
-with check (public.is_admin());
-
-create policy "Admin reads orders" on public.orders
-for select to authenticated using (public.is_admin());
-
-create policy "Admin updates orders" on public.orders
-for update to authenticated using (public.is_admin())
-with check (public.is_admin());
-
-create policy "Admin reads order items" on public.order_items
-for select to authenticated using (public.is_admin());
-
-create policy "Public reads store settings" on public.store_settings
-for select to anon, authenticated using (true);
-
-create policy "Admin manages store settings" on public.store_settings
-for all to authenticated using (public.is_admin())
-with check (public.is_admin());
-
-insert into public.store_settings(key, value)
-values
-('delivery_fee', '{"amount":70}'::jsonb),
-('payment_methods',
- '{"COD":{"enabled":true},
-   "bKash":{"enabled":false,"number":"","instructions":""},
-   "Nagad":{"enabled":false,"number":"","instructions":""},
-   "Rocket":{"enabled":false,"number":"","instructions":""},
-   "Bank Transfer":{"enabled":false,"bank_name":"","account_name":"","account_number":"","branch":"","routing_number":"","instructions":""}}'::jsonb)
-on conflict (key) do nothing;
-
-create or replace function public.place_order(
-  p_customer jsonb,
-  p_items jsonb,
-  p_payment_method text
-)
-returns jsonb
-language plpgsql
-security definer
-set search_path = public
-as $$
-declare
-  item jsonb;
-  prod public.products%rowtype;
-  variant jsonb;
-  qty integer;
-  sz text;
-  unit numeric(10,2);
-  sub numeric(10,2) := 0;
-  delivery numeric(10,2) := 70;
-  oid uuid;
-  methods jsonb;
-begin
-  if jsonb_typeof(p_items) <> 'array'
-     or jsonb_array_length(p_items) = 0 then
-    raise exception 'Your cart is empty';
-  end if;
-
-  if coalesce(p_customer->>'name','') = ''
-     or coalesce(p_customer->>'phone','') = ''
-     or coalesce(p_customer->>'address','') = '' then
-    raise exception 'Name, phone and address are required';
-  end if;
-
-  select value into methods from public.store_settings
-  where key = 'payment_methods';
-
-  if not coalesce((methods->p_payment_method->>'enabled')::boolean, false) then
-    raise exception 'This payment method is not available';
-  end if;
-
-  select coalesce((value->>'amount')::numeric,70)
-  into delivery from public.store_settings where key='delivery_fee';
-
-  for item in select * from jsonb_array_elements(p_items)
-  loop
-    qty := (item->>'quantity')::integer;
-    sz := item->>'size';
-
-    if qty < 1 or qty > 20 then
-      raise exception 'Invalid quantity';
-    end if;
-
-    select * into prod from public.products
-    where id = (item->>'product_id')::uuid and active = true
-    for update;
-
-    if not found then raise exception 'Product unavailable'; end if;
-
-    variant := prod.variants->sz;
-    if variant is null then raise exception 'Size unavailable'; end if;
-
-    if (variant->>'stock')::integer < qty then
-      raise exception 'Not enough stock for % - %', prod.name, sz;
-    end if;
-
-    unit := coalesce(
-      nullif(variant->>'price','')::numeric,
-      prod.offer_price,
-      prod.price
-    );
-
-    sub := sub + unit * qty;
-  end loop;
-
-  insert into public.orders(customer,payment_method,subtotal,delivery_fee,total)
-  values(p_customer,p_payment_method,sub,delivery,sub+delivery)
-  returning id into oid;
-
-  for item in select * from jsonb_array_elements(p_items)
-  loop
-    qty := (item->>'quantity')::integer;
-    sz := item->>'size';
-
-    select * into prod from public.products
-    where id = (item->>'product_id')::uuid
-    for update;
-
-    variant := prod.variants->sz;
-    unit := coalesce(
-      nullif(variant->>'price','')::numeric,
-      prod.offer_price,
-      prod.price
-    );
-
-    insert into public.order_items(
-      order_id,product_id,product_name,size,quantity,unit_price
-    ) values(oid,prod.id,prod.name,sz,qty,unit);
-
-    update public.products
-    set variants = jsonb_set(
-      variants,
-      array[sz,'stock'],
-      to_jsonb((variant->>'stock')::integer - qty)
-    )
-    where id = prod.id;
-  end loop;
-
-  return jsonb_build_object(
-    'order_id',oid,
-    'subtotal',sub,
-    'delivery_fee',delivery,
-    'total',sub+delivery
-  );
-end;
-$$;
-
-revoke all on function public.place_order(jsonb,jsonb,text) from public;
-grant execute on function public.place_order(jsonb,jsonb,text) to anon, authenticated;
-
-insert into public.products(name,slug,description,category,price,offer_price,variants,featured)
-values
-('Essential Oversized Tee','essential-oversized-tee',
- 'Premium everyday oversized T-shirt. Replace this sample with your real product.',
- 'T-Shirts',490,390,
- '{"M":{"price":390,"stock":10},"L":{"price":390,"stock":10},"XL":{"price":440,"stock":10}}',
- true),
-('Signature Streetwear Tee','signature-streetwear-tee',
- 'Minimal streetwear for everyday comfort. Add your own product images and details.',
- 'T-Shirts',520,490,
- '{"M":{"price":490,"stock":8},"L":{"price":490,"stock":8},"XL":{"price":540,"stock":8}}',
- true)
-on conflict (slug) do nothing;
+<script>
+const DELIVERY_FEE=70;
+const products=[
+{id:"tee-01",name:"Essential Oversized Tee",price:490,offer:390,description:"A relaxed everyday silhouette. Minimal, versatile, and made for effortless styling.",image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:390,stock:10},"L":{price:390,stock:10},"XL":{price:440,stock:10}}},
+{id:"tee-02",name:"Everyday Classic Tee",price:520,offer:450,description:"A clean staple designed to fit naturally into your everyday wardrobe.",image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:450,stock:8},"L":{price:450,stock:8},"XL":{price:490,stock:8}}},
+{id:"tee-03",name:"Signature Graphic Tee",price:550,offer:490,description:"A contemporary graphic piece for an understated streetwear look.",image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:490,stock:5},"L":{price:490,stock:5},"XL":{price:540,stock:5}}}
+];
+let cart=JSON.parse(localStorage.getItem("baulish_cart")||"[]");
+const money=n=>"৳"+Number(n).toLocaleString("en-BD");
+function notify(text){let n=document.getElementById("notice");n.textContent=text;n.style.display="block";setTimeout(()=>n.style.display="none",3000)}
+function showSection(id){
+ ["home","collection","details","cart"].forEach(x=>document.getElementById(x).classList.add("hidden"));
+ if(id==="collection"){document.getElementById("home").classList.remove("hidden");document.getElementById("collection").classList.remove("hidden")}
+ else document.getElementById(id).classList.remove("hidden");
+ if(id==="cart")renderCart();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderProducts(){
+ document.getElementById("productGrid").innerHTML=products.map(p=>`
+ <article class="product">
+ <img class="product-photo" src="${p.image}" alt="${p.name}" onclick="openProduct('${p.id}')">
+ <h3 onclick="openProduct('${p.id}')">${p.name}</h3>
+ <p><span class="price">${money(p.offer)}</span><span class="old">${money(p.price)}</span></p>
+ <button class="btn outline" onclick="openProduct('${p.id}')">View product ↗</button>
+ </article>`).join("");
+}
+function openProduct(id){
+ let p=products.find(x=>x.id===id);
+ document.getElementById("details").innerHTML=`
+ <button class="btn outline" onclick="showSection('collection')">← Collection</button>
+ <div class="detail-layout">
+ <img class="detail-image" src="${p.image}" alt="${p.name}">
+ <div class="detail-info"><div class="kicker">BAUL-ISH essentials</div><h2>${p.name}</h2>
+ <h3 id="detailPrice">${money(p.offer)}</h3><p>${p.description}</p>
+ <label>Choose size</label><select id="size" onchange="updatePrice('${p.id}')">
+ ${Object.entries(p.sizes).map(([s,v])=>`<option value="${s}" ${v.stock<=0?"disabled":""}>${s} — ${v.stock>0?v.stock+" available":"Sold out"}</option>`).join("")}
+ </select>
+ <label>Quantity</label><input id="qty" type="number" value="1" min="1" max="10">
+ <button class="btn" onclick="addToCart('${p.id}')">Add to bag</button>
+ <p>Secure checkout will be enabled after backend integration. Prices shown in BDT.</p>
+ </div></div>`;
+ showSection("details");updatePrice(id);
+}
+function updatePrice(id){
+ let p=products.find(x=>x.id===id),s=document.getElementById("size").value;
+ document.getElementById("detailPrice").textContent=money(p.sizes[s].price);
+}
+function addToCart(id){
+ let p=products.find(x=>x.id===id),size=document.getElementById("size").value;
+ let quantity=Number(document.getElementById("qty").value);
+ if(!Number.isInteger(quantity)||quantity<1||quantity>10)return notify("Please choose a valid quantity.");
+ if(quantity>p.sizes[size].stock)return notify("Not enough stock for this size.");
+ let item=cart.find(x=>x.id===id&&x.size===size);
+ if(item){if(item.quantity+quantity>p.sizes[size].stock)return notify("Not enough stock.");item.quantity+=quantity}
+ else cart.push({id,size,quantity});
+ saveCart();notify("Added to your bag.");showSection("cart");
+}
+function saveCart(){localStorage.setItem("baulish_cart",JSON.stringify(cart));document.getElementById("bagCount").textContent=cart.reduce((n,x)=>n+x.quantity,0)}
+function renderCart(){
+ let total=0,html="";
+ cart.forEach((item,i)=>{
+ let p=products.find(x=>x.id===item.id);if(!p)return;
+ let unit=p.sizes[item.size].price;total+=unit*item.quantity;
+ html+=`<div class="cart-item"><div><b>${p.name}</b><p>Size: ${item.size} · ${money(unit)} × ${item.quantity}</p>
+ <button class="btn outline" onclick="changeQty(${i},-1)">−</button> <button class="btn outline" onclick="changeQty(${i},1)">+</button> <button class="btn outline" onclick="removeItem(${i})">Remove</button></div><b>${money(unit*item.quantity)}</b></div>`;
+ });
+ document.getElementById("cartItems").innerHTML=html||"<p>Your bag is empty.</p>";
+ document.getElementById("cartTotal").textContent="Total: "+money(total+DELIVERY_FEE);
+}
+function changeQty(i,d){
+ let item=cart[i],p=products.find(x=>x.id===item.id),stock=p.sizes[item.size].stock;
+ if(d>0&&item.quantity>=stock)return notify("Stock limit reached.");
+ item.quantity+=d;if(item.quantity<1)cart.splice(i,1);saveCart();renderCart();
+}
+function removeItem(i){cart.splice(i,1);saveCart();renderCart()}
+document.getElementById("checkout").addEventListener("submit",e=>{
+ e.preventDefault();
+ notify("Demo only: connect a secure backend before accepting real orders.");
+});
+renderProducts();saveCart();
+</script>
+</body>
+</html>
