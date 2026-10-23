@@ -1,1212 +1,249 @@
-
-<!DOCTYPE html>
-<html lang="bn" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA STYLES | Premium Fashion & Lifestyle</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#FAF5FF',
-                            100: '#F3E8FF',
-                            500: '#8B5CF6',
-                            600: '#7C3AED',
-                            700: '#6D28D9',
-                            900: '#4C1D95',
-                            gold: '#D4AF37',
-                            goldHover: '#AA8B22'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.3);
-            border-radius: 999px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.6);
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300 font-sans min-h-screen flex flex-col">
-
-    <!-- Top Announcement Bar -->
-    <div id="announcement-bar" class="bg-gradient-to-r from-purple-900 via-brand-700 to-purple-900 text-white text-xs md:text-sm py-2 px-4 flex justify-between items-center transition-all duration-300">
-        <div class="container mx-auto flex justify-between items-center">
-            <p class="font-medium flex items-center gap-2">
-                <span class="bg-brand-gold text-gray-900 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full">EID SPECIAL</span>
-                <span>✨ Get 20% OFF on all New Season Arrivals! Use Code: <strong class="underline decoration-brand-gold">EID2026</strong></span>
-            </p>
-            <div class="flex items-center gap-4">
-                <!-- Currency Selector -->
-                <div class="flex items-center gap-1 text-xs bg-black/20 px-2 py-1 rounded-md border border-white/10">
-                    <i class="fa-solid me-1 fa-coins text-brand-gold"></i>
-                    <select id="currency-select" onchange="changeCurrency(this.value)" class="bg-transparent text-white font-semibold cursor-pointer focus:outline-none">
-                        <option value="BDT" class="text-gray-900">BDT (৳)</option>
-                        <option value="USD" class="text-gray-900">USD ($)</option>
-                    </select>
-                </div>
-                <!-- Admin Panel Quick Access Button -->
-                <button onclick="toggleAdminPanel()" class="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded transition flex items-center gap-1">
-                    <i class="fa-solid fa-sliders text-brand-gold"></i>
-                    <span class="hidden sm:inline">Admin Dashboard</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors">
-        <div class="container mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
-            <!-- Brand Logo -->
-            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-amber-400 flex items-center justify-center text-white font-serif font-bold text-2xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
-                    A
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-serif text-2xl font-bold tracking-wider text-gray-900 dark:text-white leading-none">AURA</span>
-                    <span class="text-[9px] tracking-[0.3em] font-extrabold text-brand-600 dark:text-brand-500 uppercase leading-tight">STYLES</span>
-                </div>
-            </a>
-
-            <!-- Search Bar -->
-            <div class="hidden md:flex flex-1 max-w-md relative">
-                <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Search hoodies, dresses, jackets..." class="w-full bg-gray-100 dark:bg-gray-800 border-none text-sm rounded-full pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-brand-500 text-gray-800 dark:text-gray-200">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
-            </div>
-
-            <!-- Navigation Links & Icons -->
-            <div class="flex items-center gap-3 md:gap-5">
-                <nav class="hidden lg:flex items-center gap-6 font-medium text-sm">
-                    <a href="#" onclick="navigateTo('home'); return false;" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Home</a>
-                    <a href="#products-section" onclick="filterCategory('All')" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Shop All</a>
-                    <a href="#products-section" onclick="filterCategory('Hoodies')" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Hoodies</a>
-                    <a href="#products-section" onclick="filterCategory('Dresses')" class="hover:text-brand-600 dark:hover:text-brand-500 transition">Dresses</a>
-                </nav>
-
-                <!-- Admin Button -->
-                <button onclick="toggleAdminPanel()" title="Open Product Manager" class="p-2.5 rounded-full bg-purple-50 dark:bg-purple-950/50 text-brand-600 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-purple-900 transition relative">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <span class="hidden sm:inline-block text-xs font-semibold ml-1">Manage</span>
-                </button>
-
-                <!-- Cart Icon Trigger -->
-                <button onclick="toggleCartDrawer()" class="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition relative">
-                    <i class="fa-solid fa-bag-shopping text-gray-700 dark:text-gray-300"></i>
-                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900">0</span>
-                </button>
-
-                <!-- Mobile Search Toggle & Menu -->
-                <button onclick="toggleMobileSearch()" class="md:hidden p-2 text-gray-600 dark:text-gray-300">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Search Dropdown -->
-        <div id="mobile-search-bar" class="hidden md:hidden px-4 pb-3">
-            <input type="text" oninput="handleSearch(this.value)" placeholder="Search clothing items..." class="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-sm">
-        </div>
-    </header>
-
-    <!-- MAIN VIEW CONTAINER (Dynamic Route Simulation) -->
-    <main id="app-container" class="flex-grow">
-        <!-- Content will be injected dynamically by JS router (Home / Details Page) -->
-    </main>
-
-    <!-- ==================== SIDE CART DRAWER ==================== -->
-    <div id="cart-drawer-backdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <div id="cart-drawer" class="fixed top-0 right-0 w-full max-w-md h-full bg-white dark:bg-gray-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        <div class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800/50">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-bag-shopping text-brand-600 dark:text-brand-400"></i>
-                <h3 class="font-bold text-lg">Shopping Bag</h3>
-                <span id="cart-item-count" class="text-xs bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300 px-2 py-0.5 rounded-full font-semibold">0 items</span>
-            </div>
-            <button onclick="toggleCartDrawer()" class="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <!-- Cart Items List -->
-        <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-            <!-- Empty state or Cart items injected here -->
-        </div>
-
-        <!-- Cart Footer & Checkout -->
-        <div class="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/30 space-y-3">
-            <div class="space-y-1 text-sm">
-                <div class="flex justify-between text-gray-500">
-                    <span>Subtotal</span>
-                    <span id="cart-subtotal">৳ 0</span>
-                </div>
-                <div class="flex justify-between text-gray-500">
-                    <span>Delivery Fee</span>
-                    <span id="cart-shipping">৳ 80 (Inside Dhaka)</span>
-                </div>
-                <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white">
-                    <span>Total Amount</span>
-                    <span id="cart-total" class="text-brand-600 dark:text-brand-400">৳ 0</span>
-                </div>
-            </div>
-
-            <!-- Customer Details Input for WhatsApp Order -->
-            <div class="space-y-2 pt-2">
-                <input type="text" id="customer-name" placeholder="Your Full Name *" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-1 focus:ring-brand-500">
-                <input type="text" id="customer-phone" placeholder="Phone Number *" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-1 focus:ring-brand-500">
-                <textarea id="customer-address" rows="2" placeholder="Full Delivery Address *" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-1 focus:ring-brand-500"></textarea>
-            </div>
-
-            <!-- Checkout Button -->
-            <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span>Order via WhatsApp Direct</span>
-            </button>
-            <p class="text-[10px] text-center text-gray-400">Instant confirmation & Cash on Delivery support</p>
-        </div>
-    </div>
-
-    <!-- ==================== ADMIN DASHBOARD MODAL ==================== -->
-    <div id="admin-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-900 w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-gray-800">
-            <!-- Modal Header -->
-            <div class="p-4 bg-gray-900 text-white flex justify-between items-center border-b border-gray-800">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <h3 class="font-bold text-lg">AURA Product Manager (No Code Admin)</h3>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="resetToDefaultData()" class="text-xs bg-rose-600/80 hover:bg-rose-600 px-3 py-1.5 rounded-lg text-white transition">Reset Demo Data</button>
-                    <button onclick="toggleAdminPanel()" class="p-1.5 hover:bg-gray-800 rounded-lg text-gray-400 hover:text-white">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tabs -->
-            <div class="flex border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 text-sm font-medium">
-                <button onclick="switchAdminTab('add')" id="tab-btn-add" class="px-5 py-3 border-b-2 border-brand-600 text-brand-600 dark:text-brand-400 font-bold">Add / Edit Product</button>
-                <button onclick="switchAdminTab('list')" id="tab-btn-list" class="px-5 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">Product List & Inventory</button>
-                <button onclick="switchAdminTab('json')" id="tab-btn-json" class="px-5 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">Raw JSON Import/Export</button>
-            </div>
-
-            <!-- Modal Content Area -->
-            <div class="p-6 overflow-y-auto flex-1 custom-scrollbar">
-                
-                <!-- Tab 1: Add / Edit Product Form -->
-                <div id="admin-tab-add" class="space-y-4">
-                    <input type="hidden" id="admin-prod-id">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Product Title *</label>
-                            <input type="text" id="admin-prod-title" placeholder="e.g. Royal Embroidered Kurti" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Category *</label>
-                            <select id="admin-prod-category" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                <option value="Hoodies">Hoodies</option>
-                                <option value="T-Shirts">T-Shirts</option>
-                                <option value="Dresses">Dresses</option>
-                                <option value="Outerwear">Outerwear</option>
-                                <option value="Panjabi">Panjabi / Ethnic</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Regular Price (BDT ৳) *</label>
-                            <input type="number" id="admin-prod-price" placeholder="1850" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Original/Old Price (BDT ৳ - for discount)</label>
-                            <input type="number" id="admin-prod-oldprice" placeholder="2400" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Fabric / Material</label>
-                            <input type="text" id="admin-prod-fabric" placeholder="100% Premium Organic Cotton" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1">Stock Status</label>
-                            <select id="admin-prod-stock" class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                <option value="true">In Stock</option>
-                                <option value="false">Out of Stock</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold mb-1">Image URLs (Comma separated links)</label>
-                        <input type="text" id="admin-prod-images" placeholder="https://images.unsplash.com/photo-1..., https://images.unsplash.com/photo-2..." class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        <p class="text-[11px] text-gray-400 mt-1">Leave empty to use high quality auto-generated design placeholders.</p>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold mb-1">Description</label>
-                        <textarea id="admin-prod-desc" rows="3" placeholder="Write item details, fitting guidelines, design notes..." class="w-full text-sm p-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800"></textarea>
-                    </div>
-
-                    <div class="flex items-center gap-4 pt-2">
-                        <button onclick="saveAdminProduct()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-6 rounded-xl transition flex items-center gap-2">
-                            <i class="fa-solid fa-floppy-disk"></i>
-                            <span id="admin-save-btn-text">Save Product</span>
-                        </button>
-                        <button onclick="clearAdminForm()" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold py-2.5 px-4 rounded-xl transition">
-                            Clear
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tab 2: Product List -->
-                <div id="admin-tab-list" class="hidden space-y-3">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-xs md:text-sm">
-                            <thead>
-                                <tr class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                                    <th class="p-3">ID</th>
-                                    <th class="p-3">Product</th>
-                                    <th class="p-3">Category</th>
-                                    <th class="p-3">Price</th>
-                                    <th class="p-3">Stock</th>
-                                    <th class="p-3 text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-product-table-body" class="divide-y divide-gray-200 dark:divide-gray-800">
-                                <!-- Dynamic rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Tab 3: JSON Raw Editor -->
-                <div id="admin-tab-json" class="hidden space-y-3">
-                    <p class="text-xs text-gray-500">You can copy your `products.json` file content here or edit raw JSON directly. Click "Apply JSON" to sync changes live across the site.</p>
-                    <textarea id="admin-json-raw" rows="12" class="w-full font-mono text-xs p-3 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-950 text-emerald-600 dark:text-emerald-400 focus:outline-none"></textarea>
-                    <div class="flex justify-between items-center">
-                        <button onclick="copyJSONToClipboard()" class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 text-xs px-3 py-2 rounded-lg font-semibold">
-                            <i class="fa-solid fa-copy me-1"></i> Copy products.json
-                        </button>
-                        <button onclick="applyRawJSON()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-4 py-2 rounded-lg">
-                            Apply & Save JSON Data
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- SIZE CHART MODAL -->
-    <div id="size-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gray-200 dark:border-gray-800">
-            <button onclick="toggleSizeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 class="font-serif font-bold text-xl mb-1">Standard Sizing Guide</h3>
-            <p class="text-xs text-gray-500 mb-4">Measurements in inches. Fits true to Bangladeshi & Asian standards.</p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-xs text-center border-collapse">
-                    <thead>
-                        <tr class="bg-brand-50 dark:bg-gray-800 text-brand-700 dark:text-brand-300 font-bold">
-                            <th class="p-2 border border-gray-200 dark:border-gray-700">Size</th>
-                            <th class="p-2 border border-gray-200 dark:border-gray-700">Chest (Inches)</th>
-                            <th class="p-2 border border-gray-200 dark:border-gray-700">Length (Inches)</th>
-                            <th class="p-2 border border-gray-200 dark:border-gray-700">Sleeve</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
-                        <tr><td class="p-2 font-bold">S</td><td class="p-2">36 - 38</td><td class="p-2">27</td><td class="p-2">8.0</td></tr>
-                        <tr><td class="p-2 font-bold">M</td><td class="p-2">38 - 40</td><td class="p-2">28</td><td class="p-2">8.5</td></tr>
-                        <tr><td class="p-2 font-bold">L</td><td class="p-2">40 - 42</td><td class="p-2">29</td><td class="p-2">9.0</td></tr>
-                        <tr><td class="p-2 font-bold">XL</td><td class="p-2">42 - 44</td><td class="p-2">30</td><td class="p-2">9.5</td></tr>
-                        <tr><td class="p-2 font-bold">XXL</td><td class="p-2">44 - 46</td><td class="p-2">31</td><td class="p-2">10.0</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-4 text-center">* If you prefer a loose relaxed fit, we recommend selecting one size up.</p>
-        </div>
-    </div>
-
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-gray-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-gray-700 pointer-events-none">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-        <span id="toast-message" class="text-sm font-medium">Item added to cart!</span>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-300 pt-12 pb-6 mt-16 border-t border-gray-800">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-serif font-bold">A</div>
-                    <span class="font-serif text-xl font-bold text-white tracking-wider">AURA STYLES</span>
-                </div>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    Elevating street style and traditional elegance with contemporary designs. Crafted for comfort, styled for distinction.
-                </p>
-                <div class="flex gap-3 text-lg text-gray-400 pt-1">
-                    <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="hover:text-brand-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Customer Care</h4>
-                <ul class="space-y-2 text-xs text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Order Tracking</a></li>
-                    <li><a href="#" class="hover:text-white transition">Shipping & Delivery Policy</a></li>
-                    <li><a href="#" class="hover:text-white transition">Easy Exchange & Returns</a></li>
-                    <li><a href="#" onclick="toggleSizeModal(); return false;" class="hover:text-white transition">Size Guide</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Quick Links</h4>
-                <ul class="space-y-2 text-xs text-gray-400">
-                    <li><a href="#products-section" onclick="filterCategory('Hoodies')" class="hover:text-white transition">Premium Hoodies</a></li>
-                    <li><a href="#products-section" onclick="filterCategory('T-Shirts')" class="hover:text-white transition">Oversized T-Shirts</a></li>
-                    <li><a href="#products-section" onclick="filterCategory('Dresses')" class="hover:text-white transition">Women's Collection</a></li>
-                    <li><a href="#products-section" onclick="filterCategory('Outerwear')" class="hover:text-white transition">Jackets & Coats</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Contact & Hotline</h4>
-                <div class="space-y-2 text-xs text-gray-400">
-                    <p><i class="fa-solid fa-phone text-brand-500 me-2"></i> +880 1800-000000</p>
-                    <p><i class="fa-solid fa-envelope text-brand-500 me-2"></i> support@aurastyles.bd</p>
-                    <p><i class="fa-solid fa-location-dot text-brand-500 me-2"></i> Banani, Block 11, Dhaka, Bangladesh</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mx-auto px-4 pt-6 border-t border-gray-800 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>© 2026 AURA STYLES Ltd. All rights reserved.</p>
-            <p class="flex items-center gap-1">Powered by Dynamic JSON Engine & WhatsApp Commerce</p>
-        </div>
-    </footer>
-
-    <!-- ==================== JAVASCRIPT APPLICATION CORE ==================== -->
-    <script>
-        // Default Mock `products.json` database
-        const DEFAULT_PRODUCTS = [
-            {
-                id: "aura-101",
-                name: "Aura Heavyweight Oversized Hoodie",
-                price: 1850,
-                originalPrice: 2400,
-                discount: "23% OFF",
-                isNew: true,
-                category: "Hoodies",
-                description: "Crafted from 380 GSM ultra-soft fleece cotton. Designed with dropped shoulders, double-lined hood, and deep kangaroo pocket for street style comfort.",
-                fabric: "100% Organic Heavyweight Fleece Cotton",
-                sizing: "Loose Oversized Fit",
-                stock: true,
-                images: [
-                    "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: "aura-102",
-                name: "Minimalist Graphic Acid Wash Tee",
-                price: 850,
-                originalPrice: 1100,
-                discount: "22% OFF",
-                isNew: true,
-                category: "T-Shirts",
-                description: "Vintage vintage acid-washed aesthetic tee with custom chest embroidery. Breathable, durable, and pre-shrunk fabric.",
-                fabric: "220 GSM Combed Compact Cotton",
-                sizing: "Regular Street Fit",
-                stock: true,
-                images: [
-                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: "aura-103",
-                name: "Floral Luxury Silk Evening Dress",
-                price: 3200,
-                originalPrice: 4200,
-                discount: "24% OFF",
-                isNew: false,
-                category: "Dresses",
-                description: "Elegant lightweight silk blend dress featuring flowy silhouette, smocked cuffs, and intricate floral aesthetic.",
-                fabric: "Premium Satin Silk Blend",
-                sizing: "Standard Regular Fit",
-                stock: true,
-                images: [
-                    "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: "aura-104",
-                name: "Urban Tactical Denim Jacket",
-                price: 2950,
-                originalPrice: 3800,
-                discount: "22% OFF",
-                isNew: true,
-                category: "Outerwear",
-                description: "Heavy-duty washed denim jacket with matte brass buttons, double utility chest pockets, and relaxed layering cut.",
-                fabric: "100% Rigid Raw Cotton Denim",
-                sizing: "Standard Outerwear Fit",
-                stock: true,
-                images: [
-                    "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: "aura-105",
-                name: "Royal Embroidered Festive Panjabi",
-                price: 2650,
-                originalPrice: 3200,
-                discount: "17% OFF",
-                isNew: false,
-                category: "Panjabi",
-                description: "Exquisite hand-embroidery along collar and placket. Perfect for Eid celebrations, weddings, and formal festivities.",
-                fabric: "Jacquard Premium Cotton Silk",
-                sizing: "Slim Traditional Fit",
-                stock: true,
-                images: [
-                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80"
-                ]
-            }
-        ];
-
-        // Global State Management
-        let productsDatabase = [];
-        let cart = [];
-        let currentCurrency = "BDT";
-        const USD_EXCHANGE_RATE = 0.0088; // 1 BDT = 0.0088 USD approx
-        let activeCategory = "All";
-        let searchQuery = "";
-        let selectedProductDetails = null;
-        let selectedSize = "M";
-        let selectedColor = "Default";
-
-        // Initialization on Load
-        window.onload = function () {
-            loadProductsData();
-            loadCartFromStorage();
-            routeRouter();
-
-            // Handle browser back/forward buttons
-            window.addEventListener("popstate", routeRouter);
-        };
-
-        // Load Products JSON Data (Local storage cache or default fallback)
-        function loadProductsData() {
-            const stored = localStorage.getItem("aura_products_db");
-            if (stored) {
-                try {
-                    productsDatabase = JSON.parse(stored);
-                } catch (e) {
-                    productsDatabase = DEFAULT_PRODUCTS;
-                }
-            } else {
-                productsDatabase = DEFAULT_PRODUCTS;
-                saveProductsData();
-            }
-        }
-
-        function saveProductsData() {
-            localStorage.setItem("aura_products_db", JSON.stringify(productsDatabase, null, 2));
-        }
-
-        function resetToDefaultData() {
-            if (confirm("Reset all products to factory demo data?")) {
-                productsDatabase = DEFAULT_PRODUCTS;
-                saveProductsData();
-                renderCurrentPage();
-                showToast("Products database reset to default!");
-            }
-        }
-
-        // Router Engine (Simulates Multi-page navigation)
-        function navigateTo(page, id = null) {
-            if (page === 'product' && id) {
-                history.pushState({ page: 'product', id }, '', `?id=${id}`);
-            } else {
-                history.pushState({ page: 'home' }, '', window.location.pathname);
-            }
-            routeRouter();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function routeRouter() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id');
-
-            if (productId) {
-                const found = productsDatabase.find(p => p.id === productId);
-                if (found) {
-                    selectedProductDetails = found;
-                    renderProductDetailsPage();
-                    return;
-                }
-            }
-            renderHomePage();
-        }
-
-        function renderCurrentPage() {
-            routeRouter();
-        }
-
-        // Formatting Currency Helper
-        function formatPrice(amountInBDT) {
-            if (currentCurrency === "USD") {
-                const usd = (amountInBDT * USD_EXCHANGE_RATE).toFixed(2);
-                return `$ ${usd}`;
-            }
-            return `৳ ${amountInBDT.toLocaleString('en-BD')}`;
-        }
-
-        function changeCurrency(currency) {
-            currentCurrency = currency;
-            renderCurrentPage();
-            renderCart();
-            showToast(`Currency changed to ${currency}`);
-        }
-
-        // ==================== HOMEPAGE RENDERER ====================
-        function renderHomePage() {
-            const container = document.getElementById("app-container");
-
-            // Filter Products
-            let filtered = productsDatabase.filter(p => {
-                const matchCategory = activeCategory === "All" || p.category.toLowerCase() === activeCategory.toLowerCase();
-                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                    p.category.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchCategory && matchSearch;
-            });
-
-            container.innerHTML = `
-                <!-- Hero Slider / Banner Section -->
-                <section class="relative bg-gray-900 text-white overflow-hidden">
-                    <div class="absolute inset-0 z-0 opacity-40">
-                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80" alt="Hero Banner" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative z-10 container mx-auto px-4 py-20 md:py-32 flex flex-col items-start max-w-2xl">
-                        <span class="inline-block bg-brand-gold/20 text-brand-gold border border-brand-gold/40 text-xs font-extrabold tracking-widest px-3 py-1 rounded-full uppercase mb-4">
-                            New Season Collection 2026
-                        </span>
-                        <h1 class="font-serif text-4xl md:text-6xl font-bold leading-tight mb-4">
-                            Elegance Redefined For Modern Lifestyle
-                        </h1>
-                        <p class="text-gray-300 text-sm md:text-base mb-8">
-                            Discover premium craftsmanship, sustainable fabrics, and minimalist oversized aesthetics tailored for Dhaka & worldwide.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#products-section" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg shadow-brand-600/30 transition transform hover:-translate-y-0.5">
-                                Explore Collection
-                            </a>
-                            <button onclick="toggleSizeModal()" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/20 font-semibold py-3.5 px-6 rounded-xl transition">
-                                View Size Guide
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Category Filters Bar -->
-                <section id="products-section" class="container mx-auto px-4 pt-12 pb-6">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-6">
-                        <div>
-                            <h2 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Curated Collections</h2>
-                            <p class="text-xs text-gray-500 mt-1">Showing ${filtered.length} trending items loaded dynamically</p>
-                        </div>
-
-                        <!-- Filter Buttons -->
-                        <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 custom-scrollbar">
-                            ${['All', 'Hoodies', 'T-Shirts', 'Dresses', 'Outerwear', 'Panjabi'].map(cat => `
-                                <button onclick="filterCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${
-                                    activeCategory === cat 
-                                    ? 'bg-brand-600 text-white shadow-md shadow-brand-500/20' 
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                }">
-                                    ${cat}
-                                </button>
-                            `).join('')}
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Product Grid -->
-                <section class="container mx-auto px-4 pb-16">
-                    ${filtered.length === 0 ? `
-                        <div class="text-center py-16 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-dashed border-gray-300 dark:border-gray-800">
-                            <i class="fa-solid fa-box-open text-4xl text-gray-400 mb-3"></i>
-                            <h3 class="font-bold text-lg">No Products Found</h3>
-                            <p class="text-xs text-gray-500 mt-1">Try changing category filters or search terms.</p>
-                        </div>
-                    ` : `
-                        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                            ${filtered.map(product => renderProductCard(product)).join('')}
-                        </div>
-                    `}
-                </section>
-            `;
-        }
-
-        // Single Product Card HTML Template
-        function renderProductCard(product) {
-            const img = (product.images && product.images.length > 0) ? product.images[0] : 'https://placehold.co/600x800/1e1b4b/ffffff?text=AURA+STYLE';
-            
-            return `
-                <div class="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-800 cursor-pointer" onclick="navigateTo('product', '${product.id}')">
-                        <img src="${img}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        
-                        <!-- Badges -->
-                        <div class="absolute top-2.5 left-2.5 flex flex-col gap-1">
-                            ${product.discount ? `<span class="bg-rose-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-md shadow">${product.discount}</span>` : ''}
-                            ${product.isNew ? `<span class="bg-brand-gold text-gray-900 font-extrabold text-[10px] px-2 py-0.5 rounded-md shadow">NEW</span>` : ''}
-                        </div>
-
-                        <!-- Quick View Hover Overlay Button -->
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                            <button onclick="event.stopPropagation(); navigateTo('product', '${product.id}')" class="w-full bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white font-bold text-xs py-2 rounded-lg backdrop-blur-sm shadow hover:bg-brand-600 hover:text-white transition">
-                                View Details <i class="fa-solid fa-arrow-right ml-1"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <span class="text-[10px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">${product.category}</span>
-                            <h3 onclick="navigateTo('product', '${product.id}')" class="font-bold text-sm text-gray-900 dark:text-white line-clamp-1 cursor-pointer hover:text-brand-600 transition mt-0.5">
-                                ${product.name}
-                            </h3>
-                        </div>
-
-                        <div class="mt-3 flex items-center justify-between">
-                            <div>
-                                <span class="font-extrabold text-base text-gray-900 dark:text-white">${formatPrice(product.price)}</span>
-                                ${product.originalPrice ? `<span class="text-xs text-gray-400 line-through ml-1.5">${formatPrice(product.originalPrice)}</span>` : ''}
-                            </div>
-                            <button onclick="addToCart('${product.id}', 'M')" class="p-2.5 rounded-xl bg-brand-50 dark:bg-purple-950/40 text-brand-600 dark:text-brand-400 hover:bg-brand-600 hover:text-white transition shadow-sm">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // ==================== PRODUCT DETAILS PAGE RENDERER (`product.html` equivalent) ====================
-        function renderProductDetailsPage() {
-            const container = document.getElementById("app-container");
-            const p = selectedProductDetails;
-
-            if (!p) return renderHomePage();
-
-            const images = (p.images && p.images.length > 0) ? p.images : ['https://placehold.co/600x800/1e1b4b/ffffff?text=AURA+STYLE'];
-
-            container.innerHTML = `
-                <div class="container mx-auto px-4 py-8">
-                    <!-- Breadcrumb -->
-                    <div class="flex items-center gap-2 text-xs text-gray-500 mb-6">
-                        <a href="#" onclick="navigateTo('home'); return false;" class="hover:text-brand-600">Home</a>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                        <a href="#products-section" onclick="navigateTo('home'); filterCategory('${p.category}'); return false;" class="hover:text-brand-600">${p.category}</a>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                        <span class="text-gray-900 dark:text-white font-semibold truncate max-w-xs">${p.name}</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <!-- Image Gallery (7 Cols) -->
-                        <div class="lg:col-span-7 flex flex-col md:flex-row gap-4">
-                            <!-- Thumbnails -->
-                            <div class="flex md:flex-col gap-2 order-2 md:order-1 overflow-x-auto md:overflow-y-auto max-h-[500px]">
-                                ${images.map((imgUrl, idx) => `
-                                    <button onclick="changeMainImage('${imgUrl}')" class="w-16 h-20 rounded-xl overflow-hidden border-2 border-transparent focus:border-brand-600 transition flex-shrink-0">
-                                        <img src="${imgUrl}" class="w-full h-full object-cover">
-                                    </button>
-                                `).join('')}
-                            </div>
-
-                            <!-- Main Featured Image -->
-                            <div class="flex-1 rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-800 aspect-[3/4] order-1 md:order-2">
-                                <img id="main-product-img" src="${images[0]}" class="w-full h-full object-cover">
-                            </div>
-                        </div>
-
-                        <!-- Product info & Buying options (5 Cols) -->
-                        <div class="lg:col-span-5 space-y-6">
-                            <div>
-                                <span class="bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300 text-xs font-bold px-2.5 py-1 rounded-md uppercase">
-                                    ${p.category}
-                                </span>
-                                <h1 class="font-serif text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-2">${p.name}</h1>
-                                
-                                <div class="flex items-center gap-3 mt-3">
-                                    <span class="text-2xl font-extrabold text-brand-600 dark:text-brand-400">${formatPrice(p.price)}</span>
-                                    ${p.originalPrice ? `<span class="text-sm text-gray-400 line-through">${formatPrice(p.originalPrice)}</span>` : ''}
-                                    ${p.discount ? `<span class="bg-rose-100 text-rose-600 font-bold text-xs px-2 py-0.5 rounded-full">${p.discount}</span>` : ''}
-                                </div>
-                            </div>
-
-                            <!-- Description -->
-                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-300 leading-relaxed border-t border-b border-gray-200 dark:border-gray-800 py-4">
-                                ${p.description || 'Premium quality apparel from AURA STYLES.'}
-                            </p>
-
-                            <!-- Size Selector -->
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <label class="text-xs font-bold text-gray-700 dark:text-gray-300">Select Size</label>
-                                    <button onclick="toggleSizeModal()" class="text-xs text-brand-600 dark:text-brand-400 underline font-medium">
-                                        <i class="fa-solid fa-ruler-horizontal me-1"></i> Size Chart
-                                    </button>
-                                </div>
-                                <div class="grid grid-cols-5 gap-2">
-                                    ${['S', 'M', 'L', 'XL', 'XXL'].map(sz => `
-                                        <button onclick="selectSizeOption('${sz}', this)" class="size-btn py-2.5 text-xs font-bold rounded-xl border ${sz === selectedSize ? 'border-brand-600 bg-brand-50 dark:bg-purple-950 text-brand-600 dark:text-brand-400' : 'border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'} transition">
-                                            ${sz}
-                                        </button>
-                                    `).join('')}
-                                </div>
-                            </div>
-
-                            <!-- Highlights / Specs -->
-                            <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl space-y-2 text-xs">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-500">Fabric Composition:</span>
-                                    <span class="font-semibold">${p.fabric || 'Cotton Blend'}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-500">Fit Style:</span>
-                                    <span class="font-semibold">${p.sizing || 'Regular Fit'}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-500">Availability:</span>
-                                    <span class="font-semibold text-emerald-600">In Stock (Fast Delivery)</span>
-                                </div>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="space-y-3 pt-2">
-                                <button onclick="addToCart('${p.id}', selectedSize); toggleCartDrawer();" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-600/30 transition flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                    <span>Add To Cart</span>
-                                </button>
-
-                                <button onclick="buyNowDirect('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                                    <span>Buy Now via WhatsApp</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function changeMainImage(url) {
-            document.getElementById("main-product-img").src = url;
-        }
-
-        function selectSizeOption(size, btn) {
-            selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(b => {
-                b.classList.remove('border-brand-600', 'bg-brand-50', 'dark:bg-purple-950', 'text-brand-600', 'dark:text-brand-400');
-                b.classList.add('border-gray-200', 'dark:border-gray-700', 'text-gray-700', 'dark:text-gray-300');
-            });
-            btn.classList.add('border-brand-600', 'bg-brand-50', 'dark:bg-purple-950', 'text-brand-600', 'dark:text-brand-400');
-        }
-
-        function filterCategory(cat) {
-            activeCategory = cat;
-            renderHomePage();
-        }
-
-        function handleSearch(val) {
-            searchQuery = val;
-            renderHomePage();
-        }
-
-        function toggleMobileSearch() {
-            const elem = document.getElementById("mobile-search-bar");
-            elem.classList.toggle("hidden");
-        }
-
-        // ==================== CART MANAGEMENT & STORAGE ====================
-        function loadCartFromStorage() {
-            const stored = localStorage.getItem("aura_cart");
-            if (stored) {
-                try { cart = JSON.parse(stored); } catch(e) { cart = []; }
-            }
-            updateCartBadge();
-        }
-
-        function saveCartToStorage() {
-            localStorage.setItem("aura_cart", JSON.stringify(cart));
-            updateCartBadge();
-        }
-
-        function addToCart(productId, size = "M") {
-            const product = productsDatabase.find(p => p.id === productId);
-            if (!product) return;
-
-            const existingIndex = cart.findIndex(item => item.id === productId && item.size === size);
-            if (existingIndex > -1) {
-                cart[existingIndex].qty += 1;
-            } else {
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    size: size,
-                    image: (product.images && product.images.length > 0) ? product.images[0] : '',
-                    qty: 1
-                });
-            }
-
-            saveCartToStorage();
-            renderCart();
-            showToast(`Added "${product.name}" (${size}) to cart!`);
-        }
-
-        function updateCartQty(index, delta) {
-            if (cart[index]) {
-                cart[index].qty += delta;
-                if (cart[index].qty <= 0) {
-                    cart.splice(index, 1);
-                }
-                saveCartToStorage();
-                renderCart();
-            }
-        }
-
-        function updateCartBadge() {
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById("cart-badge").innerText = totalQty;
-            document.getElementById("cart-item-count").innerText = `${totalQty} items`;
-        }
-
-        function renderCart() {
-            const container = document.getElementById("cart-items-container");
-            
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-gray-400">
-                        <i class="fa-solid fa-bag-shopping text-4xl mb-2 opacity-50"></i>
-                        <p class="text-sm font-semibold">Your shopping bag is empty</p>
-                        <button onclick="toggleCartDrawer()" class="mt-3 text-xs text-brand-600 font-bold underline">Start Shopping</button>
-                    </div>
-                `;
-                document.getElementById("cart-subtotal").innerText = formatPrice(0);
-                document.getElementById("cart-total").innerText = formatPrice(0);
-                return;
-            }
-
-            let subtotal = 0;
-            container.innerHTML = cart.map((item, idx) => {
-                const itemTotal = item.price * item.qty;
-                subtotal += itemTotal;
-
-                return `
-                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/40 rounded-xl border border-gray-100 dark:border-gray-800">
-                        <img src="${item.image || 'https://placehold.co/100'}" class="w-16 h-20 object-cover rounded-lg bg-gray-200">
-                        <div class="flex-1">
-                            <h4 class="font-bold text-xs line-clamp-1">${item.name}</h4>
-                            <p class="text-[11px] text-gray-400 mt-0.5">Size: <strong class="text-gray-700 dark:text-gray-200">${item.size}</strong></p>
-                            <div class="font-extrabold text-xs text-brand-600 dark:text-brand-400 mt-1">${formatPrice(item.price)}</div>
-                        </div>
-
-                        <!-- Qty Controls -->
-                        <div class="flex items-center gap-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-1">
-                            <button onclick="updateCartQty(${idx}, -1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-700 rounded">-</button>
-                            <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
-                            <button onclick="updateCartQty(${idx}, 1)" class="w-5 h-5 flex items-center justify-center text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-700 rounded">+</button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            const shipping = 80; // BDT
-            document.getElementById("cart-subtotal").innerText = formatPrice(subtotal);
-            document.getElementById("cart-total").innerText = formatPrice(subtotal + shipping);
-        }
-
-        function toggleCartDrawer() {
-            const drawer = document.getElementById("cart-drawer");
-            const backdrop = document.getElementById("cart-drawer-backdrop");
-
-            const isOpen = !drawer.classList.contains("translate-x-full");
-
-            if (isOpen) {
-                drawer.classList.add("translate-x-full");
-                backdrop.classList.add("opacity-0", "pointer-events-none");
-            } else {
-                renderCart();
-                drawer.classList.remove("translate-x-full");
-                backdrop.classList.remove("opacity-0", "pointer-events-none");
-            }
-        }
-
-        // ==================== WHATSAPP CHECKOUT INTEGRATION ====================
-        function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
-
-            const name = document.getElementById("customer-name").value.trim();
-            const phone = document.getElementById("customer-phone").value.trim();
-            const address = document.getElementById("customer-address").value.trim();
-
-            if (!name || !phone || !address) {
-                alert("Please fill in your Name, Phone Number, and Delivery Address to proceed.");
-                return;
-            }
-
-            let message = `*NEW ORDER - AURA STYLES*\n`;
-            message += `-------------------------\n`;
-            message += `👤 *Customer:* ${name}\n`;
-            message += `📞 *Phone:* ${phone}\n`;
-            message += `📍 *Address:* ${address}\n`;
-            message += `-------------------------\n`;
-            message += `*ORDERED ITEMS:*\n`;
-
-            let subtotal = 0;
-            cart.forEach((item, i) => {
-                const total = item.price * item.qty;
-                subtotal += total;
-                message += `${i + 1}. ${item.name} [Size: ${item.size}] x ${item.qty} = ৳${total}\n`;
-            });
-
-            const shipping = 80;
-            const grandTotal = subtotal + shipping;
-
-            message += `-------------------------\n`;
-            message += `💰 *Subtotal:* ৳${subtotal}\n`;
-            message += `🚚 *Delivery Fee:* ৳${shipping}\n`;
-            message += `✅ *Grand Total:* ৳${grandTotal}\n`;
-            message += `-------------------------\n`;
-            message += `Payment Method: Cash on Delivery`;
-
-            const encoded = encodeURIComponent(message);
-            const whatsappNum = "8801800000000"; // Replace with your official WhatsApp business number
-            window.open(`https://wa.me/${whatsappNum}?text=${encoded}`, '_blank');
-        }
-
-        function buyNowDirect(productId) {
-            addToCart(productId, selectedSize);
-            toggleCartDrawer();
-        }
-
-        function toggleSizeModal() {
-            const modal = document.getElementById("size-modal");
-            modal.classList.toggle("hidden");
-        }
-
-        // ==================== ADMIN DASHBOARD LOGIC ====================
-        function toggleAdminPanel() {
-            const modal = document.getElementById("admin-modal");
-            modal.classList.toggle("hidden");
-            if (!modal.classList.contains("hidden")) {
-                renderAdminProductTable();
-                syncRawJSONTab();
-            }
-        }
-
-        function switchAdminTab(tab) {
-            document.getElementById("admin-tab-add").classList.add("hidden");
-            document.getElementById("admin-tab-list").classList.add("hidden");
-            document.getElementById("admin-tab-json").classList.add("hidden");
-
-            document.querySelectorAll('#admin-modal button[id^="tab-btn-"]').forEach(btn => {
-                btn.classList.remove('border-brand-600', 'text-brand-600', 'dark:text-brand-400', 'font-bold');
-                btn.classList.add('border-transparent', 'text-gray-500');
-            });
-
-            document.getElementById(`admin-tab-${tab}`).classList.remove("hidden");
-            const activeBtn = document.getElementById(`tab-btn-${tab}`);
-            activeBtn.classList.add('border-brand-600', 'text-brand-600', 'dark:text-brand-400', 'font-bold');
-        }
-
-        function saveAdminProduct() {
-            const id = document.getElementById("admin-prod-id").value || `aura-${Date.now().toString().slice(-4)}`;
-            const title = document.getElementById("admin-prod-title").value.trim();
-            const category = document.getElementById("admin-prod-category").value;
-            const price = parseFloat(document.getElementById("admin-prod-price").value) || 0;
-            const oldPrice = parseFloat(document.getElementById("admin-prod-oldprice").value) || null;
-            const fabric = document.getElementById("admin-prod-fabric").value.trim();
-            const desc = document.getElementById("admin-prod-desc").value.trim();
-            const rawImages = document.getElementById("admin-prod-images").value.trim();
-
-            if (!title || price <= 0) {
-                alert("Please provide a valid Product Title and Price.");
-                return;
-            }
-
-            const images = rawImages ? rawImages.split(',').map(s => s.trim()) : [
-                "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80"
-            ];
-
-            let discountText = null;
-            if (oldPrice && oldPrice > price) {
-                const pct = Math.round(((oldPrice - price) / oldPrice) * 100);
-                discountText = `${pct}% OFF`;
-            }
-
-            const existingIndex = productsDatabase.findIndex(p => p.id === id);
-            const newProd = {
-                id: id,
-                name: title,
-                price: price,
-                originalPrice: oldPrice,
-                discount: discountText,
-                isNew: true,
-                category: category,
-                description: desc,
-                fabric: fabric || "100% Cotton",
-                sizing: "Standard Fit",
-                stock: true,
-                images: images
-            };
-
-            if (existingIndex > -1) {
-                productsDatabase[existingIndex] = newProd;
-                showToast("Product updated successfully!");
-            } else {
-                productsDatabase.unshift(newProd);
-                showToast("New product added successfully!");
-            }
-
-            saveProductsData();
-            clearAdminForm();
-            renderCurrentPage();
-            renderAdminProductTable();
-            switchAdminTab('list');
-        }
-
-        function editProductAdmin(id) {
-            const p = productsDatabase.find(item => item.id === id);
-            if (!p) return;
-
-            document.getElementById("admin-prod-id").value = p.id;
-            document.getElementById("admin-prod-title").value = p.name;
-            document.getElementById("admin-prod-category").value = p.category;
-            document.getElementById("admin-prod-price").value = p.price;
-            document.getElementById("admin-prod-oldprice").value = p.originalPrice || '';
-            document.getElementById("admin-prod-fabric").value = p.fabric || '';
-            document.getElementById("admin-prod-desc").value = p.description || '';
-            document.getElementById("admin-prod-images").value = p.images ? p.images.join(', ') : '';
-
-            document.getElementById("admin-save-btn-text").innerText = "Update Product";
-            switchAdminTab('add');
-        }
-
-        function deleteProductAdmin(id) {
-            if (confirm("Are you sure you want to delete this product?")) {
-                productsDatabase = productsDatabase.filter(p => p.id !== id);
-                saveProductsData();
-                renderCurrentPage();
-                renderAdminProductTable();
-                showToast("Product deleted.");
-            }
-        }
-
-        function clearAdminForm() {
-            document.getElementById("admin-prod-id").value = "";
-            document.getElementById("admin-prod-title").value = "";
-            document.getElementById("admin-prod-price").value = "";
-            document.getElementById("admin-prod-oldprice").value = "";
-            document.getElementById("admin-prod-fabric").value = "";
-            document.getElementById("admin-prod-desc").value = "";
-            document.getElementById("admin-prod-images").value = "";
-            document.getElementById("admin-save-btn-text").innerText = "Save Product";
-        }
-
-        function renderAdminProductTable() {
-            const tbody = document.getElementById("admin-product-table-body");
-            tbody.innerHTML = productsDatabase.map(p => `
-                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                    <td class="p-3 font-mono text-[11px] text-gray-400">${p.id}</td>
-                    <td class="p-3 font-bold flex items-center gap-2">
-                        <img src="${(p.images && p.images[0]) || ''}" class="w-8 h-10 object-cover rounded">
-                        <span class="line-clamp-1">${p.name}</span>
-                    </td>
-                    <td class="p-3">${p.category}</td>
-                    <td class="p-3 font-bold text-brand-600">৳ ${p.price}</td>
-                    <td class="p-3"><span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded">Active</span></td>
-                    <td class="p-3 text-right space-x-1">
-                        <button onclick="editProductAdmin('${p.id}')" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded"><i class="fa-solid fa-pen"></i></button>
-                        <button onclick="deleteProductAdmin('${p.id}')" class="p-1.5 text-rose-600 hover:bg-rose-50 rounded"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function syncRawJSONTab() {
-            document.getElementById("admin-json-raw").value = JSON.stringify(productsDatabase, null, 2);
-        }
-
-        function applyRawJSON() {
-            try {
-                const parsed = JSON.parse(document.getElementById("admin-json-raw").value);
-                if (Array.isArray(parsed)) {
-                    productsDatabase = parsed;
-                    saveProductsData();
-                    renderCurrentPage();
-                    showToast("JSON Data applied successfully!");
-                } else {
-                    alert("JSON must be an array of product objects.");
-                }
-            } catch (err) {
-                alert("Invalid JSON format! Please check syntax.");
-            }
-        }
-
-        function copyJSONToClipboard() {
-            const raw = document.getElementById("admin-json-raw");
-            raw.select();
-            document.execCommand('copy');
-            showToast("Copied JSON to clipboard!");
-        }
-
-        // ==================== TOAST NOTIFICATION HELPER ====================
-        function showToast(msg) {
-            const toast = document.getElementById("toast");
-            document.getElementById("toast-message").innerText = msg;
-            toast.classList.remove("translate-y-20", "opacity-0");
-
-            setTimeout(() => {
-                toast.classList.add("translate-y-20", "opacity-0");
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
-```
+create extension if not exists pgcrypto;
+
+create table if not exists public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  is_admin boolean not null default false
+);
+
+create table if not exists public.products (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  slug text unique not null,
+  description text default '',
+  category text default 'Clothing',
+  image_url text default '',
+  price numeric(10,2) not null default 0,
+  offer_price numeric(10,2),
+  variants jsonb not null default '{"M":{"price":490,"stock":0},"L":{"price":490,"stock":0},"XL":{"price":540,"stock":0}}',
+  featured boolean not null default false,
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.orders (
+  id uuid primary key default gen_random_uuid(),
+  customer jsonb not null,
+  payment_method text not null default 'COD',
+  payment_status text not null default 'unpaid',
+  status text not null default 'pending',
+  subtotal numeric(10,2) not null,
+  delivery_fee numeric(10,2) not null default 70,
+  total numeric(10,2) not null,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.order_items (
+  id uuid primary key default gen_random_uuid(),
+  order_id uuid not null references public.orders(id) on delete cascade,
+  product_id uuid references public.products(id) on delete set null,
+  product_name text not null,
+  size text not null,
+  quantity integer not null,
+  unit_price numeric(10,2) not null
+);
+
+create table if not exists public.store_settings (
+  key text primary key,
+  value jsonb not null default '{}'::jsonb
+);
+
+create or replace function public.is_admin()
+returns boolean
+language sql stable security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and is_admin = true
+  );
+$$;
+
+create or replace function public.new_profile()
+returns trigger language plpgsql security definer
+set search_path = public
+as $$
+begin
+  insert into public.profiles(id) values(new.id)
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+
+drop trigger if exists create_profile_after_signup on auth.users;
+create trigger create_profile_after_signup
+after insert on auth.users
+for each row execute procedure public.new_profile();
+
+alter table public.profiles enable row level security;
+alter table public.products enable row level security;
+alter table public.orders enable row level security;
+alter table public.order_items enable row level security;
+alter table public.store_settings enable row level security;
+
+create policy "Read active products" on public.products
+for select to anon, authenticated using (active = true or public.is_admin());
+
+create policy "Admin manages products" on public.products
+for all to authenticated using (public.is_admin())
+with check (public.is_admin());
+
+create policy "Admin reads orders" on public.orders
+for select to authenticated using (public.is_admin());
+
+create policy "Admin updates orders" on public.orders
+for update to authenticated using (public.is_admin())
+with check (public.is_admin());
+
+create policy "Admin reads order items" on public.order_items
+for select to authenticated using (public.is_admin());
+
+create policy "Public reads store settings" on public.store_settings
+for select to anon, authenticated using (true);
+
+create policy "Admin manages store settings" on public.store_settings
+for all to authenticated using (public.is_admin())
+with check (public.is_admin());
+
+insert into public.store_settings(key, value)
+values
+('delivery_fee', '{"amount":70}'::jsonb),
+('payment_methods',
+ '{"COD":{"enabled":true},
+   "bKash":{"enabled":false,"number":"","instructions":""},
+   "Nagad":{"enabled":false,"number":"","instructions":""},
+   "Rocket":{"enabled":false,"number":"","instructions":""},
+   "Bank Transfer":{"enabled":false,"bank_name":"","account_name":"","account_number":"","branch":"","routing_number":"","instructions":""}}'::jsonb)
+on conflict (key) do nothing;
+
+create or replace function public.place_order(
+  p_customer jsonb,
+  p_items jsonb,
+  p_payment_method text
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  item jsonb;
+  prod public.products%rowtype;
+  variant jsonb;
+  qty integer;
+  sz text;
+  unit numeric(10,2);
+  sub numeric(10,2) := 0;
+  delivery numeric(10,2) := 70;
+  oid uuid;
+  methods jsonb;
+begin
+  if jsonb_typeof(p_items) <> 'array'
+     or jsonb_array_length(p_items) = 0 then
+    raise exception 'Your cart is empty';
+  end if;
+
+  if coalesce(p_customer->>'name','') = ''
+     or coalesce(p_customer->>'phone','') = ''
+     or coalesce(p_customer->>'address','') = '' then
+    raise exception 'Name, phone and address are required';
+  end if;
+
+  select value into methods from public.store_settings
+  where key = 'payment_methods';
+
+  if not coalesce((methods->p_payment_method->>'enabled')::boolean, false) then
+    raise exception 'This payment method is not available';
+  end if;
+
+  select coalesce((value->>'amount')::numeric,70)
+  into delivery from public.store_settings where key='delivery_fee';
+
+  for item in select * from jsonb_array_elements(p_items)
+  loop
+    qty := (item->>'quantity')::integer;
+    sz := item->>'size';
+
+    if qty < 1 or qty > 20 then
+      raise exception 'Invalid quantity';
+    end if;
+
+    select * into prod from public.products
+    where id = (item->>'product_id')::uuid and active = true
+    for update;
+
+    if not found then raise exception 'Product unavailable'; end if;
+
+    variant := prod.variants->sz;
+    if variant is null then raise exception 'Size unavailable'; end if;
+
+    if (variant->>'stock')::integer < qty then
+      raise exception 'Not enough stock for % - %', prod.name, sz;
+    end if;
+
+    unit := coalesce(
+      nullif(variant->>'price','')::numeric,
+      prod.offer_price,
+      prod.price
+    );
+
+    sub := sub + unit * qty;
+  end loop;
+
+  insert into public.orders(customer,payment_method,subtotal,delivery_fee,total)
+  values(p_customer,p_payment_method,sub,delivery,sub+delivery)
+  returning id into oid;
+
+  for item in select * from jsonb_array_elements(p_items)
+  loop
+    qty := (item->>'quantity')::integer;
+    sz := item->>'size';
+
+    select * into prod from public.products
+    where id = (item->>'product_id')::uuid
+    for update;
+
+    variant := prod.variants->sz;
+    unit := coalesce(
+      nullif(variant->>'price','')::numeric,
+      prod.offer_price,
+      prod.price
+    );
+
+    insert into public.order_items(
+      order_id,product_id,product_name,size,quantity,unit_price
+    ) values(oid,prod.id,prod.name,sz,qty,unit);
+
+    update public.products
+    set variants = jsonb_set(
+      variants,
+      array[sz,'stock'],
+      to_jsonb((variant->>'stock')::integer - qty)
+    )
+    where id = prod.id;
+  end loop;
+
+  return jsonb_build_object(
+    'order_id',oid,
+    'subtotal',sub,
+    'delivery_fee',delivery,
+    'total',sub+delivery
+  );
+end;
+$$;
+
+revoke all on function public.place_order(jsonb,jsonb,text) from public;
+grant execute on function public.place_order(jsonb,jsonb,text) to anon, authenticated;
+
+insert into public.products(name,slug,description,category,price,offer_price,variants,featured)
+values
+('Essential Oversized Tee','essential-oversized-tee',
+ 'Premium everyday oversized T-shirt. Replace this sample with your real product.',
+ 'T-Shirts',490,390,
+ '{"M":{"price":390,"stock":10},"L":{"price":390,"stock":10},"XL":{"price":440,"stock":10}}',
+ true),
+('Signature Streetwear Tee','signature-streetwear-tee',
+ 'Minimal streetwear for everyday comfort. Add your own product images and details.',
+ 'T-Shirts',520,490,
+ '{"M":{"price":490,"stock":8},"L":{"price":490,"stock":8},"XL":{"price":540,"stock":8}}',
+ true)
+on conflict (slug) do nothing;
