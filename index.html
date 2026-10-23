@@ -1,392 +1,487 @@
+```html
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA STYLES | Premium Fashion & Streetwear</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0f172a',
-                            primary: '#2563eb',
-                            accent: '#f59e0b',
-                            light: '#f8fafc'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA STYLES | Premium Fashion & Minimalist Apparel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            aura: {
+              black: '#0d0d0d',
+              dark: '#141414',
+              card: '#1c1c1c',
+              cream: '#f5f0eb',
+              accent: '#d4af37',
+              gray: '#8e8e93'
             }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
         }
-    </script>
-    <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0d0d0d; color: #f5f0eb; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
 </head>
-<body class="bg-gray-50 text-slate-800 font-sans antialiased custom-scrollbar">
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Promo Banner -->
-    <div class="bg-brand-dark text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex justify-between items-center">
-        <div class="flex-1 text-center">
-            🔥 ঈদ স্পেশাল অফার: যেকোনো ৩টি কাপড়ে ১৫% ডিসকাউন্ট! কোড: <span class="text-brand-accent font-bold">AURA15</span>
-        </div>
-        <div class="hidden sm:flex items-center space-x-2 text-xs">
-            <span>মুদ্রা:</span>
-            <button onclick="toggleCurrency('BDT')" id="btn-bdt" class="font-bold text-brand-accent underline">BDT (৳)</button>
-            <span>|</span>
-            <button onclick="toggleCurrency('USD')" id="btn-usd" class="hover:text-gray-300">USD ($)</button>
-        </div>
+  <!-- Top Announcement Bar -->
+  <div class="bg-aura-accent text-aura-black text-xs font-semibold py-2 px-4 text-center tracking-wider uppercase">
+    ✨ Eid Special Offer: Free Delivery Nationwide on Orders Over ৳3000!
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-aura-black/90 backdrop-blur-md border-b border-white/10 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-aura-cream">AURA<span class="text-aura-accent">.</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="index.html" class="text-aura-accent hover:text-aura-cream transition">Home</a>
+        <a href="#shop" class="text-aura-cream/80 hover:text-aura-cream transition">New Arrivals</a>
+        <a href="#collections" class="text-aura-cream/80 hover:text-aura-cream transition">Collections</a>
+        <a href="#about" class="text-aura-cream/80 hover:text-aura-cream transition">About Us</a>
+      </nav>
+
+      <!-- Right Actions: Currency & Cart -->
+      <div class="flex items-center space-x-4 md:space-x-6">
+        <!-- Currency Switcher -->
+        <select id="currency-select" onchange="changeCurrency(this.value)" class="bg-aura-card border border-white/20 text-aura-cream text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-aura-accent">
+          <option value="BDT">BDT (৳)</option>
+          <option value="USD">USD ($)</option>
+        </select>
+
+        <!-- Cart Icon -->
+        <button onclick="toggleCartDrawer(true)" class="relative p-2 text-aura-cream hover:text-aura-accent transition" aria-label="Open Cart">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span id="cart-badge" class="absolute top-0 right-0 bg-aura-accent text-aura-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+        </button>
+      </div>
+
     </div>
+  </header>
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <a href="#" class="text-2xl md:text-3xl font-extrabold tracking-wider text-brand-dark flex items-center gap-1">
-                        AURA<span class="text-brand-primary">.</span>
-                    </a>
-                    <span class="hidden md:inline-block text-xs bg-brand-primary/10 text-brand-primary font-bold px-2 py-0.5 rounded-full">EST. 2026</span>
-                </div>
-
-                <!-- Desktop Search -->
-                <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
-                    <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="পোশাকের নাম বা ক্যাটাগরি খুঁজুন..." class="w-full bg-slate-100 border border-transparent focus:border-brand-primary focus:bg-white rounded-full py-2.5 pl-5 pr-10 text-sm outline-none transition">
-                    <i class="fa-solid fa-magnifying-glass absolute right-4 top-3.5 text-gray-400"></i>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="flex items-center space-x-4">
-                    <button onclick="toggleCartDrawer()" class="relative p-2 text-slate-700 hover:text-brand-primary transition">
-                        <i class="fa-solid fa-bag-shopping text-2xl"></i>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-brand-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
-                    </button>
-                    <a href="https://wa.me/8801700000000" target="_blank" class="hidden sm:flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs md:text-sm px-4 py-2.5 rounded-full shadow-md transition">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span>WhatsApp Order</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative bg-slate-900 text-white overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200');"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 flex flex-col items-start justify-center">
-            <span class="bg-brand-accent text-slate-900 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-sm mb-4">Summer Collection 2026</span>
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight max-w-2xl leading-tight mb-6">
-                আপনার ব্যক্তিত্বের সাথে নতুন <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">স্টাইল ও আভা।</span>
-            </h1>
-            <p class="text-gray-300 text-base md:text-lg max-w-xl mb-8">
-                প্রিমিয়াম ফ্যাব্রিক, আধুনিক ফিটিং এবং ট্রেন্ডি ডিজাইনের পোশাক এখন একদম রিজেনবল প্রাইসে।
-            </p>
-            <div class="flex flex-wrap gap-4">
-                <a href="#products-section" class="bg-brand-primary hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-full shadow-lg transition">এখনই শপিং করুন</a>
-                <a href="#categories" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-semibold px-6 py-3.5 rounded-full transition">ক্যাটাগরি দেখুন</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Filters -->
-    <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">ক্যাটাগরি অনুযায়ী খুঁজুন</h2>
-            <div class="flex gap-2">
-                <button onclick="filterCategory('all')" class="cat-btn active bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-semibold shadow">সব দেখুন</button>
-                <button onclick="filterCategory('men')" class="cat-btn bg-white border text-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:bg-slate-100">Men's Wear</button>
-                <button onclick="filterCategory('women')" class="cat-btn bg-white border text-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:bg-slate-100">Women's Wear</button>
-                <button onclick="filterCategory('streetwear')" class="cat-btn bg-white border text-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:bg-slate-100">Streetwear</button>
-            </div>
-        </div>
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <!-- Hero Banner -->
+    <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-aura-black via-aura-dark to-aura-card">
+      <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+        <span class="text-aura-accent text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-4 block">Spring/Summer 2026 Collection</span>
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-aura-cream mb-6 leading-tight">
+          Redefining Minimalist <br/><span class="italic font-normal text-aura-accent">Luxury Fashion</span>
+        </h1>
+        <p class="text-aura-gray text-sm md:text-base max-w-xl mx-auto mb-8 font-light">
+          Discover crafted apparel designed for elegance, timeless aesthetics, and ultimate comfort.
+        </p>
+        <a href="#shop" class="inline-flex items-center gap-3 bg-aura-cream text-aura-black font-semibold text-sm px-8 py-4 rounded-full hover:bg-aura-accent transition duration-300 transform hover:-translate-y-0.5">
+          Explore Collection
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
     </section>
 
     <!-- Product Grid Section -->
-    <section id="products-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Products rendered dynamically via JS -->
+    <section id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+        <div>
+          <h2 class="font-serif text-3xl md:text-4xl font-semibold text-aura-cream">Featured Catalog</h2>
+          <p class="text-aura-gray text-sm mt-2">Click any item to view details, select sizes, and customize specs.</p>
         </div>
+      </div>
+
+      <!-- Grid -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Dynamic Products Injected via JS -->
+      </div>
     </section>
 
-    <!-- Shopping Cart Drawer -->
-    <div id="cart-drawer" class="fixed inset-0 bg-slate-900/60 z-50 backdrop-blur-sm transition-opacity opacity-0 pointer-events-none">
-        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-                <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
-                    <h3 class="text-lg font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-cart-shopping"></i> শপিং কার্ট
-                    </h3>
-                    <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-white text-xl">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <!-- Cart Items List -->
-                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
-                    <!-- Dynamic cart items -->
-                </div>
-                <!-- Cart Summary & Checkout -->
-                <div class="p-6 border-t border-gray-200 bg-slate-50">
-                    <div class="flex justify-between font-bold text-slate-900 text-lg mb-4">
-                        <span>মোট মূল্য:</span>
-                        <span id="cart-total">৳০</span>
-                    </div>
-                    <form id="checkoutForm" onsubmit="handleCheckout(event)" class="space-y-3">
-                        <input type="text" required id="custName" placeholder="আপনার পুরো নাম" class="w-full text-sm border p-2.5 rounded-lg outline-none focus:border-brand-primary">
-                        <input type="tel" required id="custPhone" placeholder="মোবাইল নম্বর (যেমন: 017...)" class="w-full text-sm border p-2.5 rounded-lg outline-none focus:border-brand-primary">
-                        <textarea required id="custAddress" placeholder="ডেলিভারি ঠিকানা..." class="w-full text-sm border p-2.5 rounded-lg outline-none focus:border-brand-primary h-20"></textarea>
-                        
-                        <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg text-xs text-slate-700">
-                            🚚 <strong>ডেলিভারি চার্জ:</strong> ঢাকার ভেতরে ৳৮০, ঢাকার বাইরে ৳১৫০ (ক্যাশ অন ডেলিভারি)
-                        </div>
-
-                        <button type="submit" class="w-full bg-brand-primary hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-md transition flex items-center justify-center gap-2">
-                            <span>ক্যাশ অন ডেলিভারিতে অর্ডার করুন</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
+    <!-- Features Banner -->
+    <section class="border-t border-b border-white/10 py-12 bg-aura-dark">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-4">
+          <div class="w-12 h-12 bg-aura-card text-aura-accent rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-semibold text-aura-cream">Premium Quality Fabrics</h3>
+          <p class="text-aura-gray text-xs mt-2">100% organic cotton and handpicked luxe textiles.</p>
         </div>
+        <div class="p-4">
+          <div class="w-12 h-12 bg-aura-card text-aura-accent rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-aura-cream">Fast Delivery</h3>
+          <p class="text-aura-gray text-xs mt-2">Express shipping in Dhaka & nationwide within 48-72 hours.</p>
+        </div>
+        <div class="p-4">
+          <div class="w-12 h-12 bg-aura-card text-aura-accent rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <h3 class="font-semibold text-aura-cream">Instant WhatsApp Checkout</h3>
+          <p class="text-aura-gray text-xs mt-2">Direct order confirmation with custom options via WhatsApp.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-aura-black border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-widest text-aura-cream">AURA<span class="text-aura-accent">.</span></span>
+          <p class="text-aura-gray text-xs mt-4 leading-relaxed">
+            Elevating modern wardrobing with minimalist luxury, refined tailored cuts, and uncompromised quality.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-aura-cream uppercase tracking-wider mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-xs text-aura-gray">
+            <li><a href="index.html" class="hover:text-aura-cream transition">Home</a></li>
+            <li><a href="#shop" class="hover:text-aura-cream transition">Shop All</a></li>
+            <li><a href="#" class="hover:text-aura-cream transition">Size Guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-aura-cream uppercase tracking-wider mb-4">Customer Care</h4>
+          <ul class="space-y-2 text-xs text-aura-gray">
+            <li><a href="#" class="hover:text-aura-cream transition">Delivery & Returns</a></li>
+            <li><a href="#" class="hover:text-aura-cream transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-aura-cream transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-aura-cream uppercase tracking-wider mb-4">Contact Us</h4>
+          <p class="text-xs text-aura-gray leading-relaxed mb-3">House 42, Road 11, Banani, Dhaka, Bangladesh</p>
+          <p class="text-xs text-aura-accent font-semibold">WhatsApp: +8801700000000</p>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-xs text-aura-gray">
+        &copy; 2026 AURA STYLES. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer Overlay -->
+  <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/70 z-50 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+
+  <!-- Shopping Cart Drawer -->
+  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-aura-dark z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between border-l border-white/10">
+    <!-- Drawer Header -->
+    <div class="p-6 border-b border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <h3 class="font-serif text-xl font-semibold text-aura-cream">Your Shopping Bag</h3>
+        <span id="cart-count-title" class="bg-aura-card text-aura-accent text-xs px-2.5 py-1 rounded-full font-semibold">(0)</span>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="text-aura-gray hover:text-aura-cream transition p-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
     </div>
 
-    <!-- Quick View Modal -->
-    <div id="quickview-modal" class="fixed inset-0 z-50 bg-slate-900/70 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative">
-            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-2xl z-10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div id="modal-content" class="p-6 md:p-8 flex flex-col md:flex-row gap-6">
-                <!-- Dynamic Quickview content -->
-            </div>
-        </div>
+    <!-- Drawer Items Container -->
+    <div id="cart-items" class="p-6 flex-grow overflow-y-auto space-y-4 no-scrollbar">
+      <!-- Injected via JS -->
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 pt-16 pb-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div>
-                <a href="#" class="text-2xl font-bold text-white mb-4 block">AURA STYLES<span class="text-brand-primary">.</span></a>
-                <p class="text-sm text-slate-400 mb-4">বাংলাদেশের সেরা ট্রেন্ডি এবং প্রিমিয়াম কোয়ালিটির পোশাক ব্র্যান্ড।</p>
+    <!-- Drawer Footer -->
+    <div class="p-6 border-t border-white/10 bg-aura-black">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-aura-gray">Subtotal</span>
+        <span id="cart-subtotal" class="font-semibold text-lg text-aura-accent">৳0</span>
+      </div>
+      <p class="text-xs text-aura-gray mb-4">Taxes & shipping calculated at WhatsApp checkout.</p>
+      
+      <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.285-.143-1.689-.834-1.95-.929-.262-.095-.453-.143-.644.143-.19.285-.737.929-.904 1.12-.166.19-.333.214-.618.071-.285-.143-1.206-.444-2.298-1.417-.849-.757-1.423-1.692-1.589-1.977-.166-.285-.018-.439.125-.581.129-.128.285-.333.428-.5.143-.166.19-.285.285-.476.095-.19.048-.357-.024-.5-.071-.143-.644-1.552-.882-2.122-.231-.556-.468-.48-.644-.488-.166-.008-.357-.01-.548-.01-.19 0-.5.071-.761.357-.262.285-1 1.001-1 2.441 0 1.439 1.048 2.829 1.191 3.02.143.19 2.062 3.149 4.997 4.416.698.3 1.244.479 1.669.614.702.223 1.341.191 1.846.116.564-.084 1.689-.69 1.927-1.356.238-.666.238-1.237.167-1.356-.07-.12-.261-.214-.546-.357z"/></svg>
+        Order via WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Shared JavaScript Logic -->
+  <script>
+    // Product Database
+    const products = [
+      {
+        id: 1,
+        title: "Urban Oversized Heavyweight Hoodie",
+        priceBDT: 3450,
+        priceUSD: 32,
+        category: "Streetwear",
+        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80"
+        ],
+        badge: "Bestseller",
+        desc: "Crafted from 400 GSM premium French terry cotton. Features a structured double-lined hood, relaxed drop shoulders, and a minimalist silhouette."
+      },
+      {
+        id: 2,
+        title: "Minimalist Luxe Cotton T-Shirt",
+        priceBDT: 1850,
+        priceUSD: 18,
+        category: "Essentials",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
+        ],
+        badge: "New",
+        desc: "240 GSM combed ring-spun cotton tee. Ultra-soft handfeel with a tailored relaxed fit built for daily luxury."
+      },
+      {
+        id: 3,
+        title: "Monochrome Tailored Linen Shirt",
+        priceBDT: 2950,
+        priceUSD: 28,
+        category: "Formal / Casual",
+        image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80"
+        ],
+        badge: "Limited",
+        desc: "Pure organic linen weave designed for breathable sophistication. Features natural shell buttons and an unstructured collar."
+      },
+      {
+        id: 4,
+        title: "Ethereal Pleated Silk Maxi Dress",
+        priceBDT: 4850,
+        priceUSD: 45,
+        category: "Womenswear",
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+        ],
+        badge: "Trending",
+        desc: "Floor-length pleated silhouette woven from high-grade silk blend. Elegant flow with an adjustable waist tie."
+      }
+    ];
+
+    // State Management
+    let currentCurrency = localStorage.getItem('aura_currency') || 'BDT';
+    let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
+
+    // Initialize Page
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('currency-select').value = currentCurrency;
+      renderProducts();
+      updateCartUI();
+    });
+
+    // Render Product Cards
+    function renderProducts() {
+      const container = document.getElementById('product-grid');
+      if (!container) return;
+
+      container.innerHTML = products.map(product => {
+        const price = currentCurrency === 'BDT' ? `৳${product.priceBDT.toLocaleString()}` : `$${product.priceUSD}`;
+        return `
+          <div class="group bg-aura-card rounded-2xl overflow-hidden border border-white/10 hover:border-aura-accent/50 transition-all duration-300 flex flex-col justify-between">
+            <div class="relative overflow-hidden aspect-[4/5] bg-aura-dark">
+              <span class="absolute top-3 left-3 z-10 bg-aura-black/80 text-aura-accent text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-aura-accent/20">
+                ${product.badge}
+              </span>
+              <a href="product.html?id=${product.id}">
+                <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </a>
             </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase">Quick Links</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white">নতুন কালেকশন</a></li>
-                    <li><a href="#" class="hover:text-white">বেস্ট সেলার</a></li>
-                    <li><a href="#" class="hover:text-white">অফার পণ্য</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase">Customer Support</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white">সাইজ গাইড</a></li>
-                    <li><a href="#" class="hover:text-white">রিটার্ন পলিসি</a></li>
-                    <li><a href="#" class="hover:text-white">হেল্পলাইন: +880 1700-000000</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase">সোশ্যাল মিডিয়া</h4>
-                <div class="flex gap-4 text-xl">
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 border-t border-slate-800 pt-6 text-center text-xs">
-            © 2026 AURA STYLES. All rights reserved. Designed for Demo Showcase.
-        </div>
-    </footer>
-
-    <!-- JavaScript Application Logic -->
-    <script>
-        const products = [
-            { id: 1, name: "Urban Oversized Heavy Hoodie", category: "streetwear", priceBDT: 1450, priceUSD: 18, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600", rating: 4.9, size: ["M", "L", "XL"] },
-            { id: 2, name: "Classic Minimal Cotton T-Shirt", category: "men", priceBDT: 650, priceUSD: 8, image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600", rating: 4.8, size: ["S", "M", "L", "XL"] },
-            { id: 3, name: "Floral Summer Vintage Dress", category: "women", priceBDT: 1850, priceUSD: 22, image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=600", rating: 4.7, size: ["S", "M", "L"] },
-            { id: 4, name: "Denim Cargo Streetwear Pants", category: "streetwear", priceBDT: 1650, priceUSD: 20, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600", rating: 4.9, size: ["30", "32", "34"] },
-            { id: 5, name: "Casual Premium Oxford Shirt", category: "men", priceBDT: 1250, priceUSD: 15, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600", rating: 4.6, size: ["M", "L", "XL"] },
-            { id: 6, name: "AURA Signature Women's Jacket", category: "women", priceBDT: 2450, priceUSD: 30, image: "https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=600", rating: 5.0, size: ["S", "M"] }
-        ];
-
-        let cart = [];
-        let currentCurrency = 'BDT';
-
-        function renderProducts(items = products) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = items.map(p => {
-                const price = currentCurrency === 'BDT' ? `৳${p.priceBDT}` : `$${p.priceUSD}`;
-                return `
-                <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition group flex flex-col justify-between">
-                    <div class="relative overflow-hidden aspect-square bg-gray-100">
-                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <button onclick="openQuickView(${p.id})" class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur text-slate-800 text-xs font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition shadow">
-                            কুইক ভিউ
-                        </button>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center text-xs text-gray-500 mb-1">
-                                <span class="uppercase font-semibold text-brand-primary">${p.category}</span>
-                                <span><i class="fa-solid fa-star text-amber-400"></i> ${p.rating}</span>
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-base mb-2 group-hover:text-brand-primary transition">${p.name}</h3>
-                        </div>
-                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-50">
-                            <span class="text-lg font-black text-slate-900">${price}</span>
-                            <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-brand-primary text-white text-xs font-bold px-3.5 py-2 rounded-lg transition flex items-center gap-1">
-                                <i class="fa-solid fa-plus"></i> যোগ করুন
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `}).join('');
-        }
-
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-            renderProducts(filtered);
-        }
-
-        function filterCategory(cat) {
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('bg-slate-900', 'text-white'));
-            if(cat === 'all') renderProducts(products);
-            else renderProducts(products.filter(p => p.category === cat));
-        }
-
-        function toggleCurrency(curr) {
-            currentCurrency = curr;
-            document.getElementById('btn-bdt').className = curr === 'BDT' ? 'font-bold text-brand-accent underline' : 'hover:text-gray-300';
-            document.getElementById('btn-usd').className = curr === 'USD' ? 'font-bold text-brand-accent underline' : 'hover:text-gray-300';
-            renderProducts();
-            updateCart();
-        }
-
-        function addToCart(id) {
-            const prod = products.find(p => p.id === id);
-            const item = cart.find(i => i.id === id);
-            if(item) item.qty++;
-            else cart.push({...prod, qty: 1});
-            updateCart();
-            toggleCartDrawer(true);
-        }
-
-        function updateCart() {
-            document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-            const container = document.getElementById('cart-items');
             
-            if(cart.length === 0) {
-                container.innerHTML = `<p class="text-center text-gray-400 text-sm py-8">আপনার কার্ট খালি রয়েছে</p>`;
-                document.getElementById('cart-total').innerText = currentCurrency === 'BDT' ? '৳০' : '$0';
-                return;
-            }
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] text-aura-gray font-medium uppercase tracking-wider">${product.category}</span>
+                <a href="product.html?id=${product.id}">
+                  <h3 class="font-serif text-lg font-semibold text-aura-cream mt-1 group-hover:text-aura-accent transition line-clamp-1">${product.title}</h3>
+                </a>
+                <p class="text-aura-accent font-bold mt-2 text-base">${price}</p>
+              </div>
 
-            let total = 0;
-            container.innerHTML = cart.map(item => {
-                const itemPrice = currentCurrency === 'BDT' ? item.priceBDT : item.priceUSD;
-                total += itemPrice * item.qty;
-                return `
-                <div class="flex items-center justify-between border-b pb-3">
-                    <div>
-                        <h4 class="font-bold text-sm text-slate-800">${item.name}</h4>
-                        <p class="text-xs text-gray-500">${currentCurrency === 'BDT' ? '৳' : '$'}${itemPrice} x ${item.qty}</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 bg-gray-100 rounded font-bold">-</button>
-                        <span class="text-xs font-bold">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 bg-gray-100 rounded font-bold">+</button>
-                    </div>
+              <div class="mt-5 grid grid-cols-2 gap-2">
+                <a href="product.html?id=${product.id}" class="w-full text-center bg-aura-dark hover:bg-aura-black border border-white/10 text-aura-cream text-xs py-2.5 rounded-xl transition font-medium">
+                  View Details
+                </a>
+                <button onclick="addToCartDirect(${product.id})" class="w-full bg-aura-cream hover:bg-aura-accent text-aura-black text-xs py-2.5 rounded-xl font-bold transition">
+                  Quick Add
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Currency Switcher
+    function changeCurrency(val) {
+      currentCurrency = val;
+      localStorage.setItem('aura_currency', val);
+      renderProducts();
+      updateCartUI();
+    }
+
+    // Quick Add to Cart
+    function addToCartDirect(id) {
+      const prod = products.find(p => p.id === id);
+      if (!prod) return;
+
+      const existingIndex = cart.findIndex(item => item.id === id && item.size === 'M');
+      if (existingIndex > -1) {
+        cart[existingIndex].qty += 1;
+      } else {
+        cart.push({
+          id: prod.id,
+          title: prod.title,
+          priceBDT: prod.priceBDT,
+          priceUSD: prod.priceUSD,
+          image: prod.image,
+          size: 'M',
+          color: 'Standard',
+          qty: 1
+        });
+      }
+      saveCart();
+      toggleCartDrawer(true);
+    }
+
+    // Save Cart to LocalStorage
+    function saveCart() {
+      localStorage.setItem('aura_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    // Update Cart UI
+    function updateCartUI() {
+      const badge = document.getElementById('cart-badge');
+      const countTitle = document.getElementById('cart-count-title');
+      const itemsContainer = document.getElementById('cart-items');
+      const subtotalEl = document.getElementById('cart-subtotal');
+
+      const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+
+      // Badge
+      if (badge) {
+        badge.innerText = totalItems;
+        badge.classList.toggle('hidden', totalItems === 0);
+      }
+      if (countTitle) countTitle.innerText = `(${totalItems})`;
+
+      // Cart Items
+      if (itemsContainer) {
+        if (cart.length === 0) {
+          itemsContainer.innerHTML = `
+            <div class="text-center py-16 text-aura-gray">
+              <svg class="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              <p class="text-sm">Your shopping bag is empty.</p>
+            </div>
+          `;
+        } else {
+          itemsContainer.innerHTML = cart.map((item, index) => {
+            const price = currentCurrency === 'BDT' ? `৳${(item.priceBDT * item.qty).toLocaleString()}` : `$${item.priceUSD * item.qty}`;
+            return `
+              <div class="flex items-center gap-4 bg-aura-black p-3.5 rounded-2xl border border-white/5">
+                <img src="${item.image}" class="w-16 h-20 object-cover rounded-xl bg-aura-dark flex-shrink-0">
+                <div class="flex-grow">
+                  <h4 class="text-sm font-semibold text-aura-cream line-clamp-1">${item.title}</h4>
+                  <p class="text-xs text-aura-gray mt-0.5">Size: <span class="text-aura-cream font-medium">${item.size}</span></p>
+                  <p class="text-xs font-bold text-aura-accent mt-1">${price}</p>
+                  
+                  <!-- Qty Controls -->
+                  <div class="flex items-center gap-3 mt-2">
+                    <button onclick="updateQty(${index}, -1)" class="w-6 h-6 bg-aura-card text-aura-cream rounded-md flex items-center justify-center hover:bg-white/20 text-xs font-bold">-</button>
+                    <span class="text-xs text-aura-cream font-semibold">${item.qty}</span>
+                    <button onclick="updateQty(${index}, 1)" class="w-6 h-6 bg-aura-card text-aura-cream rounded-md flex items-center justify-center hover:bg-white/20 text-xs font-bold">+</button>
+                  </div>
                 </div>
-            `}).join('');
-
-            document.getElementById('cart-total').innerText = currentCurrency === 'BDT' ? `৳${total}` : `$${total}`;
-        }
-
-        function changeQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if(item) {
-                item.qty += delta;
-                if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
-            }
-            updateCart();
-        }
-
-        function toggleCartDrawer(open = null) {
-            const drawer = document.getElementById('cart-drawer');
-            if(open === true) {
-                drawer.classList.remove('opacity-0', 'pointer-events-none');
-            } else if(open === false) {
-                drawer.classList.add('opacity-0', 'pointer-events-none');
-            } else {
-                drawer.classList.toggle('opacity-0');
-                drawer.classList.toggle('pointer-events-none');
-            }
-        }
-
-        function openQuickView(id) {
-            const p = products.find(item => item.id === id);
-            const price = currentCurrency === 'BDT' ? `৳${p.priceBDT}` : `$${p.priceUSD}`;
-            document.getElementById('modal-content').innerHTML = `
-                <div class="w-full md:w-1/2 aspect-square rounded-xl overflow-hidden bg-gray-100">
-                    <img src="${p.image}" class="w-full h-full object-cover">
-                </div>
-                <div class="w-full md:w-1/2 flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-bold text-brand-primary uppercase">${p.category}</span>
-                        <h2 class="text-xl font-bold text-slate-900 mt-1 mb-2">${p.name}</h2>
-                        <p class="text-2xl font-black text-slate-900 mb-4">${price}</p>
-                        <p class="text-xs text-gray-500 mb-4">হাই-কোয়ালিটি ফেব্রিক দিয়ে তৈরি যা পরতে আরামদায়ক এবং ক্যাজুয়াল ও স্ট্রিটওয়্যার লুকের জন্য পারফেক্ট।</p>
-                        <div class="mb-4">
-                            <label class="text-xs font-bold text-slate-700 block mb-2">সাইজ সিলেক্ট করুন:</label>
-                            <div class="flex gap-2">
-                                ${p.size.map(s => `<button class="border px-3 py-1 rounded text-xs font-bold hover:bg-slate-900 hover:text-white">${s}</button>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="addToCart(${p.id}); closeQuickView();" class="w-full bg-slate-900 hover:bg-brand-primary text-white font-bold py-3 rounded-xl transition">
-                        কার্টে যুক্ত করুন
-                    </button>
-                </div>
+                <button onclick="removeItem(${index})" class="text-aura-gray hover:text-red-400 p-1">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
             `;
-            document.getElementById('quickview-modal').classList.remove('hidden');
+          }).join('');
         }
+      }
 
-        function closeQuickView() {
-            document.getElementById('quickview-modal').classList.add('hidden');
-        }
+      // Subtotal
+      if (subtotalEl) {
+        const subtotalBDT = cart.reduce((acc, item) => acc + (item.priceBDT * item.qty), 0);
+        const subtotalUSD = cart.reduce((acc, item) => acc + (item.priceUSD * item.qty), 0);
+        subtotalEl.innerText = currentCurrency === 'BDT' ? `৳${subtotalBDT.toLocaleString()}` : `$${subtotalUSD}`;
+      }
+    }
 
-        function handleCheckout(e) {
-            e.preventDefault();
-            if(cart.length === 0) {
-                alert('আপনার কার্ট খালি!');
-                return;
-            }
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const address = document.getElementById('custAddress').value;
+    // Update Quantity
+    function updateQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+    }
 
-            alert(`ধন্যবাদ ${name}! আপনার ক্যাশ অন ডেলিভারি অর্ডারটি গ্রহণ করা হয়েছে।\nআমরা শীঘ্রই আপনার সাথে ${phone} নম্বরে যোগাযোগ করব।`);
-            cart = [];
-            updateCart();
-            toggleCartDrawer(false);
-        }
+    // Remove Item
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
 
-        // Initialize App
-        renderProducts();
-    </script>
+    // Toggle Cart Drawer
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      if (open) {
+        drawer.classList.remove('translate-x-full');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // WhatsApp Checkout Integration
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const phoneNumber = "8801700000000"; // Replace with your target WhatsApp Number
+      let message = `*NEW ORDER - AURA STYLES*\n----------------------------------\n`;
+      
+      let total = 0;
+      cart.forEach((item, i) => {
+        const itemPrice = currentCurrency === 'BDT' ? `৳${item.priceBDT * item.qty}` : `$${item.priceUSD * item.qty}`;
+        message += `${i + 1}. *${item.title}*\n   Size: ${item.size} | Qty: ${item.qty} | Price: ${itemPrice}\n\n`;
+        total += (currentCurrency === 'BDT' ? item.priceBDT : item.priceUSD) * item.qty;
+      });
+
+      const totalFormatted = currentCurrency === 'BDT' ? `৳${total.toLocaleString()}` : `$${total}`;
+      message += `----------------------------------\n*Total Amount:* ${totalFormatted}\n\nPlease confirm my order!`;
+
+      const encodedURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(encodedURL, '_blank');
+    }
+  </script>
 </body>
 </html>
+```
