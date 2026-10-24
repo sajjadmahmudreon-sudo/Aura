@@ -2,205 +2,1699 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f6f4ee">
-<title>BAUL-ISH — Wear Your Own Story</title>
-<meta name="description" content="Discover premium everyday streetwear by BAUL-ISH.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BAUL-ISH — Premium streetwear from Bangladesh. Oversized tees, premium polos, sweatshirts. Cash on Delivery.">
+<title>BAUL-ISH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ee;--ink:#191916;--muted:#77766f;--line:#dedbd2;--accent:#8b342f}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-button,input,select{font:inherit}
-button{cursor:pointer}
-header{height:65px;padding:0 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;background:#f6f4eef0;backdrop-filter:blur(12px)}
-.logo{font-size:21px;font-weight:900;letter-spacing:3px}
-.logo span{font-weight:400}
-nav{display:flex;align-items:center;gap:18px}
-nav button{border:0;background:none;font-size:11px;letter-spacing:1px}
-main{max-width:1200px;margin:auto;padding:0 6%}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:55px 0 65px}
-.kicker{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
-.hero h1{font-size:clamp(48px,8vw,92px);letter-spacing:-5px;line-height:.91;margin:20px 0}
-.hero p{font-size:14px;line-height:1.9;color:var(--muted);max-width:360px}
-.btn{border:1px solid var(--ink);background:var(--ink);color:white;padding:14px 22px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
-.btn.outline{background:transparent;color:var(--ink)}
-.hero-image{height:410px;background:#e6e1d6;overflow:hidden;animation:reveal .8s ease}
-.hero-image img{width:100%;height:100%;object-fit:cover;display:block}
-@keyframes reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.marquee{padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;letter-spacing:3px;text-align:center}
-.section-title{display:flex;justify-content:space-between;align-items:end;margin:50px 0 20px}
-.section-title h2{font-size:28px;letter-spacing:-1px;margin:8px 0 0}
-.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.product{min-width:0;cursor:pointer}
-.product-photo{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#e7e3d9}
-.product h3{font-size:14px;margin:12px 0 7px}
-.product p{font-size:13px;margin:0 0 10px}
-.muted{color:var(--muted)}
-.old{color:var(--muted);text-decoration:line-through;font-size:11px;margin-left:5px}
-.product .btn{width:100%;margin:5px 0 12px}
-.price{font-weight:bold}
-.hidden{display:none!important}
-#details,#cart{padding:35px 0}
-.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:20px}
-.detail-image{width:100%;max-height:540px;object-fit:cover;background:#e6e1d6}
-.detail-info h2{font-size:35px;letter-spacing:-1px}
-.detail-info p{line-height:1.8;color:var(--muted);font-size:14px}
-select,input{width:100%;padding:13px;border:1px solid var(--line);background:transparent;margin:7px 0 16px}
-label{font-size:11px;letter-spacing:1px;text-transform:uppercase}
-.detail-info .btn{width:100%;margin:7px 0}
-.cart-item{border-bottom:1px solid var(--line);padding:18px 0;display:flex;justify-content:space-between;gap:10px;font-size:13px}
-footer{background:var(--ink);color:var(--bg);margin-top:60px;padding:35px 6%;font-size:12px}
-footer p{line-height:1.8;color:#c7c3ba}
-.notice{position:fixed;bottom:18px;left:5%;right:5%;padding:15px;background:var(--ink);color:white;font-size:13px;z-index:30;display:none}
-@media(max-width:650px){
- header{padding:0 4%;height:58px}.logo{font-size:17px;letter-spacing:2px}nav{gap:8px}nav button{font-size:10px;padding:4px}
- main{padding:0 4%}.hero{grid-template-columns:1fr;padding:35px 0 40px;gap:22px}.hero h1{font-size:65px;letter-spacing:-4px}
- .hero-image{height:280px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
- .section-title h2{font-size:23px}.detail-layout{grid-template-columns:1fr;gap:15px}.detail-info h2{font-size:29px}
+/* ───────────────────────────────────────────
+   TOKENS
+─────────────────────────────────────────── */
+:root {
+  --black:   #0E0E0E;
+  --ivory:   #F2EDE4;
+  --burg:    #6F263D;
+  --burg2:   #8C3050;
+  --gold:    #C9A96E;
+  --white:   #FFFFFF;
+  --g1:      #F7F7F5;
+  --g2:      #E5E5E3;
+  --g3:      #ABABAB;
+  --g4:      #555555;
+  --ink:     #1A1A1A;
+  --ok:      #2A5E43;
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+
+/* ───────────────────────────────────────────
+   RESET
+─────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{border:none;background:none;cursor:pointer;font-family:inherit;}
+input,select,textarea{font-family:inherit;outline:none;}
+ul{list-style:none;}
+
+/* ───────────────────────────────────────────
+   PAGES
+─────────────────────────────────────────── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ───────────────────────────────────────────
+   TOPBAR
+─────────────────────────────────────────── */
+.topbar{
+  background:var(--burg);
+  color:rgba(255,255,255,.85);
+  text-align:center;
+  padding:.5rem 1rem;
+  font-size:.7rem;
+  letter-spacing:.14em;
+}
+
+/* ───────────────────────────────────────────
+   NAVBAR
+─────────────────────────────────────────── */
+.navbar{
+  position:sticky;top:0;z-index:500;
+  background:var(--white);
+  border-bottom:1px solid var(--g2);
+}
+.nav-inner{
+  max-width:1380px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  height:68px;
+}
+
+/* THE WORDMARK — the central design element */
+.wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  font-size:1.55rem;
+  letter-spacing:.38em;
+  color:var(--black);
+  cursor:pointer;
+  user-select:none;
+  position:relative;
+  display:flex;align-items:center;gap:0;
+}
+.wordmark .dash{
+  color:var(--gold);
+  font-weight:300;
+  letter-spacing:.1em;
+}
+
+.nav-links{
+  display:flex;gap:2.5rem;
+}
+.nav-links a{
+  font-size:.78rem;
+  font-weight:400;
+  letter-spacing:.1em;
+  color:var(--g4);
+  position:relative;
+  padding-bottom:3px;
+  transition:color .2s;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--burg);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .25s ease;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a:hover::after{transform:scaleX(1);}
+
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-icon{
+  display:flex;align-items:center;justify-content:center;
+  padding:.35rem;color:var(--ink);
+  transition:color .2s;position:relative;
+  cursor:pointer;
+}
+.nav-icon:hover{color:var(--burg);}
+.cart-count{
+  position:absolute;top:0;right:0;
+  background:var(--burg);color:var(--white);
+  font-size:.55rem;width:15px;height:15px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+.cart-count.hide{display:none;}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;}
+.ham span{display:block;width:22px;height:1.5px;background:var(--ink);transition:.25s;}
+
+/* ───────────────────────────────────────────
+   MOBILE DRAWER
+─────────────────────────────────────────── */
+.mob-nav{
+  position:fixed;inset:0;z-index:600;
+  background:var(--black);
+  transform:translateX(110%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+  padding:2rem 2.5rem;
+}
+.mob-nav.open{transform:translateX(0);}
+.mob-close{
+  align-self:flex-end;color:var(--ivory);
+  font-size:1.8rem;line-height:1;margin-bottom:3rem;
+}
+.mob-nav a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;font-weight:600;
+  color:var(--ivory);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:1.1rem 0;
+  letter-spacing:.04em;
+  transition:color .2s;
+}
+.mob-nav a:hover{color:var(--gold);}
+.mob-wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:1.2rem;
+  letter-spacing:.3em;color:rgba(255,255,255,.25);
+  margin-top:auto;padding-top:2rem;
+}
+
+/* ───────────────────────────────────────────
+   HERO
+─────────────────────────────────────────── */
+.hero{
+  background:var(--black);
+  min-height:96vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:4rem 2rem;
+  text-align:center;
+}
+
+/* Subtle texture overlay */
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(111,38,61,.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(201,169,110,.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+/* The name as the hero — enormous, architectural */
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  font-size:clamp(4.5rem,16vw,14rem);
+  letter-spacing:.18em;
+  line-height:.9;
+  color:var(--ivory);
+  position:relative;z-index:2;
+  margin-bottom:.3em;
+}
+.hero-name .h-dash{
+  color:var(--gold);
+  font-weight:300;
+}
+
+.hero-sub-line{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  gap:1.5rem;
+  margin-bottom:3.5rem;
+}
+.hero-rule{width:60px;height:1px;background:rgba(242,237,228,.2);}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  font-weight:300;
+  color:rgba(242,237,228,.5);
+  letter-spacing:.18em;
+}
+
+.hero-btns{
+  position:relative;z-index:2;
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+}
+
+/* ───────────────────────────────────────────
+   BUTTONS
+─────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.88rem 2.4rem;
+  font-family:'Outfit',sans-serif;
+  font-size:.78rem;font-weight:400;
+  letter-spacing:.1em;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:all .22s ease;
+  white-space:nowrap;
+}
+.btn-ivory{background:var(--ivory);color:var(--black);border-color:var(--ivory);}
+.btn-ivory:hover{background:transparent;color:var(--ivory);}
+.btn-ghost-ivory{background:transparent;color:var(--ivory);border-color:rgba(242,237,228,.3);}
+.btn-ghost-ivory:hover{border-color:var(--ivory);}
+.btn-black{background:var(--black);color:var(--white);border-color:var(--black);}
+.btn-black:hover{background:var(--burg);border-color:var(--burg);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--g2);}
+.btn-ghost:hover{border-color:var(--ink);}
+.btn-burg{background:var(--burg);color:var(--white);border-color:var(--burg);}
+.btn-burg:hover{background:var(--burg2);}
+.btn-full{width:100%;}
+.btn-sm{padding:.6rem 1.4rem;font-size:.72rem;}
+
+/* ───────────────────────────────────────────
+   MARQUEE
+─────────────────────────────────────────── */
+.marquee{background:var(--ivory);overflow:hidden;padding:.7rem 0;border-top:1px solid var(--g2);}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:mq 30s linear infinite;
+}
+.mq-item{
+  display:inline-flex;align-items:center;gap:2rem;
+  font-size:.7rem;letter-spacing:.18em;
+  color:var(--g4);padding:0 2rem;
+}
+.mq-sep{color:var(--gold);font-size:.6rem;}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ───────────────────────────────────────────
+   LAYOUT HELPERS
+─────────────────────────────────────────── */
+.wrap{max-width:1380px;margin:0 auto;padding:0 2.5rem;}
+.sec{padding:6rem 0;}
+.sec-sm{padding:4rem 0;}
+
+.sec-label{
+  font-size:.68rem;
+  letter-spacing:.2em;
+  color:var(--g3);
+  display:block;
+  margin-bottom:1rem;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:600;
+  line-height:1.1;
+  color:var(--ink);
+}
+.sec-head{margin-bottom:3.5rem;}
+
+/* ───────────────────────────────────────────
+   PRODUCT GRID
+─────────────────────────────────────────── */
+.pgrid{display:grid;gap:1.2rem;}
+.pgrid-4{grid-template-columns:repeat(4,1fr);}
+.pgrid-3{grid-template-columns:repeat(3,1fr);}
+
+.pcard{cursor:pointer;position:relative;}
+.pcard-img{
+  aspect-ratio:3/4;
+  background:var(--g1);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+/* The product placeholder uses the BAUL-ISH name as texture */
+.pcard-img-inner{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.8rem;width:100%;height:100%;
+  transition:transform .5s ease;
+}
+.pcard:hover .pcard-img-inner{transform:scale(1.03);}
+.pcard-img-letter{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:700;
+  color:rgba(30,30,30,.06);
+  line-height:1;user-select:none;
+}
+.pcard-img-icon{
+  color:var(--g2);
+}
+.pcard-img-icon svg{width:44px;height:44px;}
+
+.pcard-badge{
+  position:absolute;top:.75rem;left:.75rem;
+  font-size:.6rem;letter-spacing:.12em;
+  padding:.28rem .65rem;color:var(--white);z-index:2;
+}
+.b-new{background:var(--black);}
+.b-best{background:var(--burg);}
+.b-sale{background:#B03030;}
+
+.pcard-hover{
+  position:absolute;inset:0;
+  background:rgba(14,14,14,.55);
+  display:flex;align-items:flex-end;
+  padding:.8rem;
+  opacity:0;transition:opacity .28s ease;z-index:2;
+}
+.pcard:hover .pcard-hover{opacity:1;}
+.pcard-hover button{
+  flex:1;
+  background:var(--white);color:var(--black);
+  padding:.7rem .5rem;
+  font-size:.7rem;letter-spacing:.08em;
+  font-family:'Outfit',sans-serif;
+  transition:background .2s,color .2s;
+}
+.pcard-hover button:hover{background:var(--black);color:var(--white);}
+.pcard-hover .atc{flex:2;margin-right:.5rem;}
+
+.pcard-info{padding:.85rem 0 0;}
+.pcard-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;
+  color:var(--ink);margin-bottom:.3rem;line-height:1.2;
+}
+.pcard-cat{font-size:.68rem;letter-spacing:.1em;color:var(--g3);margin-bottom:.3rem;}
+.pcard-price{display:flex;align-items:center;gap:.5rem;font-size:.85rem;}
+.p-now{font-weight:500;color:var(--ink);}
+.p-was{color:var(--g3);text-decoration:line-through;}
+.p-sale{color:#B03030;font-weight:500;}
+.pcard-dots{display:flex;gap:.3rem;margin-top:.45rem;}
+.cdot{width:13px;height:13px;border-radius:50%;border:1px solid var(--g2);}
+
+/* ───────────────────────────────────────────
+   SPLIT FEATURED SECTION
+─────────────────────────────────────────── */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:600px;
+}
+.split-visual{
+  background:var(--black);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  min-height:500px;
+}
+.split-visual-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  font-size:clamp(3rem,8vw,7rem);
+  letter-spacing:.2em;
+  color:rgba(242,237,228,.06);
+  line-height:1;
+  user-select:none;
+  text-align:center;
+  padding:2rem;
+}
+.split-visual::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 80%, rgba(111,38,61,.3) 0%, transparent 70%);
+  pointer-events:none;
+}
+.split-copy{
+  background:var(--ivory);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 4.5rem;
+}
+.split-copy .sec-label{color:var(--burg);}
+.split-copy .sec-title{margin-bottom:1.5rem;}
+.split-copy p{
+  font-size:1rem;color:var(--g4);line-height:1.85;
+  max-width:400px;margin-bottom:2.5rem;
+}
+
+/* ───────────────────────────────────────────
+   CATEGORIES STRIP
+─────────────────────────────────────────── */
+.cat-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;
+}
+.cat-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  aspect-ratio:3/4;
+  display:flex;align-items:flex-end;
+}
+.cat-item-bg{
+  position:absolute;inset:0;
+  transition:transform .5s ease;
+}
+.cat-item:hover .cat-item-bg{transform:scale(1.04);}
+.cat-bg-1{background:linear-gradient(160deg,#181818 0%,#0a0a0a 100%);}
+.cat-bg-2{background:linear-gradient(160deg,#2a1020 0%,#6F263D 100%);}
+.cat-bg-3{background:linear-gradient(160deg,#1c1a12 0%,#3a2d10 100%);}
+.cat-item-info{
+  position:relative;z-index:2;
+  padding:2rem 2rem;
+  background:linear-gradient(transparent,rgba(0,0,0,.75));
+  width:100%;
+}
+.cat-item-info h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:600;
+  color:var(--white);margin-bottom:.2rem;
+}
+.cat-item-info span{font-size:.68rem;letter-spacing:.14em;color:rgba(255,255,255,.45);}
+
+/* ───────────────────────────────────────────
+   BRAND QUOTE STRIP
+─────────────────────────────────────────── */
+.quote-sec{
+  background:var(--burg);
+  padding:5rem 0;text-align:center;
+}
+.quote-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3.5vw,2.8rem);
+  font-weight:300;font-style:italic;
+  color:var(--white);
+  max-width:760px;margin:0 auto;
+  line-height:1.45;letter-spacing:.02em;
+}
+.quote-attr{
+  font-size:.68rem;letter-spacing:.2em;
+  color:rgba(255,255,255,.45);
+  margin-top:1.5rem;
+}
+
+/* ───────────────────────────────────────────
+   REVIEWS
+─────────────────────────────────────────── */
+.reviews{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--g2);
+}
+.review-item{
+  background:var(--white);
+  padding:2.5rem 2rem;
+}
+.r-stars{color:var(--gold);font-size:.85rem;margin-bottom:1rem;letter-spacing:.1em;}
+.r-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;
+  line-height:1.7;color:var(--ink);
+  margin-bottom:1.2rem;
+}
+.r-name{font-size:.68rem;letter-spacing:.14em;color:var(--g3);}
+
+/* ───────────────────────────────────────────
+   NEWSLETTER
+─────────────────────────────────────────── */
+.nl-sec{
+  background:var(--black);
+  padding:6rem 0;text-align:center;
+}
+.nl-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:600;
+  color:var(--ivory);
+  margin-bottom:.6rem;
+}
+.nl-sub{
+  font-size:.9rem;color:rgba(242,237,228,.4);
+  margin-bottom:2.5rem;
+}
+.nl-form{display:flex;max-width:440px;margin:0 auto;}
+.nl-input{
+  flex:1;
+  padding:.9rem 1.2rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-right:none;
+  color:var(--ivory);font-size:.85rem;
+  font-family:'Outfit',sans-serif;
+}
+.nl-input::placeholder{color:rgba(242,237,228,.25);}
+.nl-btn{
+  background:var(--burg);color:var(--white);
+  padding:.9rem 1.6rem;
+  font-size:.72rem;letter-spacing:.1em;
+  border:1px solid var(--burg);
+  font-family:'Outfit',sans-serif;
+  transition:background .22s;cursor:pointer;
+}
+.nl-btn:hover{background:var(--burg2);}
+
+/* ───────────────────────────────────────────
+   FOOTER
+─────────────────────────────────────────── */
+footer{background:#080808;padding:4.5rem 0 2rem;}
+.foot-top{
+  max-width:1380px;margin:0 auto;padding:0 2.5rem;
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:3rem;padding-bottom:3.5rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.foot-brand{}
+.foot-wm{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:1.4rem;
+  letter-spacing:.3em;color:var(--ivory);
+  display:block;margin-bottom:.4rem;
+}
+.foot-wm .fd{color:var(--gold);font-weight:300;}
+.foot-tag{font-size:.65rem;letter-spacing:.18em;color:rgba(242,237,228,.25);margin-bottom:1rem;display:block;}
+.foot-desc{font-size:.82rem;color:rgba(242,237,228,.35);line-height:1.85;}
+.foot-col h5{
+  font-size:.68rem;letter-spacing:.18em;
+  color:rgba(242,237,228,.5);
+  margin-bottom:1.4rem;
+}
+.foot-col ul{display:flex;flex-direction:column;gap:.7rem;}
+.foot-col a{font-size:.82rem;color:rgba(242,237,228,.3);transition:color .2s;}
+.foot-col a:hover{color:var(--ivory);}
+.foot-bottom{
+  max-width:1380px;margin:0 auto;
+  padding:1.5rem 2.5rem 0;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.68rem;letter-spacing:.08em;
+  color:rgba(242,237,228,.18);
+}
+.foot-socials{display:flex;gap:1.5rem;}
+.foot-socials a{color:rgba(242,237,228,.22);transition:color .2s;}
+.foot-socials a:hover{color:var(--burg2);}
+
+/* ───────────────────────────────────────────
+   SHOP PAGE
+─────────────────────────────────────────── */
+.shop-hero{
+  background:var(--black);
+  padding:4rem 0 3.5rem;
+}
+.shop-hero .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;}
+.shop-hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:clamp(3rem,8vw,7rem);
+  letter-spacing:.18em;color:var(--ivory);line-height:.9;
+}
+.shop-hero-name .sd{color:var(--gold);font-weight:300;}
+.shop-hero-sub{
+  font-size:.78rem;letter-spacing:.1em;
+  color:rgba(242,237,228,.35);
+  padding-bottom:.5rem;
+}
+.shop-body{padding:3rem 0 6rem;}
+.shop-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;
+}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;}
+.fchip{
+  padding:.4rem 1rem;
+  border:1px solid var(--g2);
+  background:var(--white);
+  font-size:.7rem;letter-spacing:.08em;
+  color:var(--g4);cursor:pointer;
+  transition:all .2s;
+}
+.fchip:hover,.fchip.on{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.shop-meta{display:flex;align-items:center;gap:1.2rem;}
+.shop-ct{font-size:.7rem;letter-spacing:.08em;color:var(--g3);}
+.sort-sel{
+  padding:.4rem 1.8rem .4rem .8rem;
+  border:1px solid var(--g2);
+  background:var(--white);
+  font-size:.7rem;letter-spacing:.06em;
+  color:var(--g4);font-family:'Outfit',sans-serif;
+  cursor:pointer;appearance:none;
+}
+
+/* ───────────────────────────────────────────
+   PDP
+─────────────────────────────────────────── */
+.pdp-page{padding:4rem 0 6rem;}
+.pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.pdp-gallery{display:flex;flex-direction:column;gap:.8rem;}
+.pdp-main{
+  aspect-ratio:3/4;background:var(--g1);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.pdp-main-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:700;
+  color:rgba(30,30,30,.05);
+  line-height:1;user-select:none;letter-spacing:.1em;
+}
+.pdp-thumbs{display:flex;gap:.6rem;}
+.pdp-thumb{
+  width:76px;height:96px;background:var(--g1);
+  border:2px solid transparent;
+  cursor:pointer;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--g2);font-size:1.5rem;
+  transition:border-color .2s;flex-shrink:0;
+}
+.pdp-thumb.on,.pdp-thumb:hover{border-color:var(--ink);}
+.pdp-info{}
+.pdp-brand-tag{font-size:.68rem;letter-spacing:.18em;color:var(--g3);margin-bottom:.4rem;}
+.pdp-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:600;line-height:1.1;
+  margin-bottom:1rem;
+}
+.pdp-price{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.8rem;}
+.pdp-price .p-now{font-size:1.5rem;font-weight:500;}
+.pdp-price .p-was{font-size:1.1rem;}
+.pdp-div{border:none;border-top:1px solid var(--g2);margin:1.8rem 0;}
+.size-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;}
+.size-row span{font-size:.7rem;letter-spacing:.12em;color:var(--g3);}
+.size-guide{font-size:.7rem;color:var(--burg);cursor:pointer;text-decoration:underline;}
+.sizes{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem;}
+.sz{
+  min-width:52px;padding:.6rem .7rem;
+  border:1px solid var(--g2);
+  font-size:.82rem;text-align:center;
+  cursor:pointer;transition:all .2s;color:var(--g4);
+  font-family:'Outfit',sans-serif;
+}
+.sz:hover,.sz.on{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.sz.oos{
+  color:var(--g2);cursor:not-allowed;
+  background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,.03) 3px,rgba(0,0,0,.03) 4px);
+}
+.sz.oos:hover{background:none;color:var(--g2);border-color:var(--g2);}
+.qty-wrap{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.qty-label{font-size:.7rem;letter-spacing:.1em;color:var(--g3);min-width:50px;}
+.qty-ctrl{display:flex;align-items:center;border:1px solid var(--g2);}
+.qty-b{width:42px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--g4);cursor:pointer;transition:background .2s;}
+.qty-b:hover{background:var(--g1);}
+.qty-n{width:44px;height:44px;text-align:center;border-left:1px solid var(--g2);border-right:1px solid var(--g2);font-size:.85rem;border-top:none;border-bottom:none;}
+.pdp-ctas{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem;}
+.pdp-meta-list{margin-top:2rem;}
+.pdp-meta-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--g2);font-size:.85rem;}
+.pdp-meta-k{color:var(--g3);min-width:110px;flex-shrink:0;}
+.acc{margin-top:1.5rem;}
+.acc-row{border-top:1px solid var(--g2);}
+.acc-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 0;font-size:.85rem;letter-spacing:.04em;
+  cursor:pointer;width:100%;text-align:left;
+}
+.acc-ico{color:var(--g3);font-size:1.1rem;transition:transform .22s;}
+.acc-row.open .acc-ico{transform:rotate(45deg);}
+.acc-bd{display:none;padding:0 0 1rem;font-size:.82rem;color:var(--g4);line-height:1.85;}
+.acc-row.open .acc-bd{display:block;}
+
+/* ───────────────────────────────────────────
+   CART DRAWER
+─────────────────────────────────────────── */
+.cart-ov{
+  position:fixed;inset:0;z-index:700;
+  background:rgba(0,0,0,.45);
+  opacity:0;pointer-events:none;transition:opacity .28s;
+}
+.cart-ov.open{opacity:1;pointer-events:all;}
+.cart-dr{
+  position:fixed;top:0;right:0;bottom:0;z-index:800;
+  width:400px;max-width:100vw;
+  background:var(--white);
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.cart-dr.open{transform:translateX(0);}
+.cart-hd{
+  padding:1.5rem;
+  border-bottom:1px solid var(--g2);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;}
+.cart-x{font-size:1.4rem;color:var(--g4);cursor:pointer;padding:.3rem;}
+.cart-x:hover{color:var(--ink);}
+.cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+.cart-empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;height:100%;padding:3rem 1rem;text-align:center;color:var(--g3);
+}
+.cart-empty-state p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;}
+.cart-empty-state small{font-size:.8rem;}
+.c-item{display:flex;gap:.9rem;padding:1.1rem 0;border-bottom:1px solid var(--g2);}
+.c-item-img{
+  width:76px;height:96px;background:var(--g1);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--g2);font-size:.6rem;letter-spacing:.06em;
+  overflow:hidden;
+}
+.c-item-info{flex:1;display:flex;flex-direction:column;gap:.25rem;}
+.c-item-n{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;}
+.c-item-m{font-size:.7rem;color:var(--g3);letter-spacing:.06em;}
+.c-item-p{font-size:.85rem;font-weight:500;}
+.c-item-acts{display:flex;align-items:center;gap:.7rem;margin-top:.4rem;}
+.c-qty{display:flex;align-items:center;border:1px solid var(--g2);}
+.c-qty button{width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--g4);cursor:pointer;}
+.c-qty button:hover{background:var(--g1);}
+.c-qty span{
+  width:28px;text-align:center;font-size:.75rem;
+  border-left:1px solid var(--g2);border-right:1px solid var(--g2);
+  line-height:26px;
+}
+.c-rm{font-size:.68rem;color:var(--g3);cursor:pointer;text-decoration:underline;}
+.c-rm:hover{color:var(--ink);}
+.cart-ft{padding:1.5rem;border-top:1px solid var(--g2);background:var(--white);}
+.cart-sub{display:flex;justify-content:space-between;font-size:.82rem;color:var(--g4);margin-bottom:.4rem;}
+.cart-tot{display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:1.2rem;}
+.cart-note-txt{font-size:.68rem;color:var(--g3);text-align:center;margin-bottom:1rem;}
+
+/* ───────────────────────────────────────────
+   CHECKOUT
+─────────────────────────────────────────── */
+.co-page{padding:4rem 0 6rem;}
+.co-hd{padding:3.5rem 0 3rem;border-bottom:1px solid var(--g2);margin-bottom:3rem;}
+.co-hd h1{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;}
+.co-layout{display:grid;grid-template-columns:1fr 400px;gap:4rem;align-items:start;}
+.co-sec{margin-bottom:2.5rem;}
+.co-sec-t{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;
+  margin-bottom:1.5rem;padding-bottom:.7rem;
+  border-bottom:1px solid var(--g2);
+}
+.fg{margin-bottom:1.1rem;}
+.fl{display:block;font-size:.68rem;letter-spacing:.12em;color:var(--g3);margin-bottom:.45rem;}
+.fi{
+  width:100%;padding:.82rem 1rem;
+  border:1px solid var(--g2);
+  background:var(--white);font-size:.85rem;
+  color:var(--ink);transition:border-color .2s;
+  font-family:'Outfit',sans-serif;
+}
+.fi:focus{border-color:var(--ink);}
+.fs{width:100%;padding:.82rem 1rem;border:1px solid var(--g2);background:var(--white);font-size:.85rem;color:var(--ink);appearance:none;cursor:pointer;font-family:'Outfit',sans-serif;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.del-opts{display:flex;flex-direction:column;gap:.7rem;}
+.del-opt{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.1rem;border:1px solid var(--g2);cursor:pointer;
+  transition:border-color .2s;
+}
+.del-opt:has(input:checked){border-color:var(--ink);}
+.del-opt-l{display:flex;align-items:center;gap:.8rem;}
+.del-opt input[type=radio]{accent-color:var(--ink);}
+.del-opt-n{font-size:.85rem;}
+.del-opt-s{font-size:.68rem;color:var(--g3);}
+.del-opt-p{font-size:.85rem;font-weight:500;}
+.pay-opts{display:flex;flex-direction:column;gap:.7rem;}
+.pay-opt{
+  padding:.9rem 1.1rem;border:1px solid var(--g2);
+  cursor:pointer;display:flex;align-items:center;gap:.8rem;
+  transition:border-color .2s;
+}
+.pay-opt:has(input:checked){border-color:var(--ink);}
+.pay-opt-n{font-size:.85rem;}
+.pay-opt-s{font-size:.68rem;color:var(--g3);}
+.co-sum{background:var(--g1);padding:2rem;position:sticky;top:80px;}
+.co-sum-t{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:1.5rem;}
+.co-item{display:flex;gap:.8rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid var(--g2);}
+.co-item-img{width:56px;height:70px;background:var(--g2);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--g3);font-size:.55rem;letter-spacing:.04em;}
+.co-item-n{font-size:.82rem;margin-bottom:.2rem;}
+.co-item-m{font-size:.68rem;color:var(--g3);}
+.co-item-p{margin-left:auto;font-size:.82rem;font-weight:500;white-space:nowrap;}
+.cpn-row{display:flex;gap:0;margin-bottom:1.3rem;}
+.cpn-i{flex:1;padding:.7rem .9rem;border:1px solid var(--g2);background:var(--white);font-size:.72rem;letter-spacing:.06em;font-family:'Outfit',sans-serif;}
+.cpn-b{background:var(--ink);color:var(--white);padding:.7rem 1.1rem;font-size:.68rem;letter-spacing:.1em;border:1px solid var(--ink);cursor:pointer;transition:background .2s;font-family:'Outfit',sans-serif;}
+.cpn-b:hover{background:var(--burg);}
+.co-line{display:flex;justify-content:space-between;font-size:.82rem;color:var(--g4);margin-bottom:.5rem;}
+.co-tot-row{
+  display:flex;justify-content:space-between;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;
+  padding-top:1rem;margin-top:.5rem;
+  border-top:1px solid var(--g2);
+}
+
+/* ───────────────────────────────────────────
+   CONFIRM PAGE
+─────────────────────────────────────────── */
+.conf-page{padding:8rem 0;text-align:center;}
+.conf-check{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(42,94,67,.1);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 2rem;color:var(--ok);
+}
+.conf-order{font-size:.68rem;letter-spacing:.2em;color:var(--g3);margin-bottom:.6rem;}
+.conf-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:600;margin-bottom:.7rem;}
+.conf-sub{font-size:.9rem;color:var(--g4);margin-bottom:3rem;}
+.conf-box{
+  display:inline-block;background:var(--g1);
+  padding:2rem 2.5rem;text-align:left;min-width:300px;
+  margin-bottom:3rem;
+}
+.conf-row{display:flex;justify-content:space-between;gap:2rem;font-size:.82rem;padding:.5rem 0;border-bottom:1px solid var(--g2);}
+.conf-row:last-child{border:none;}
+.conf-k{color:var(--g3);}
+.conf-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* ───────────────────────────────────────────
+   TOAST
+─────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:2rem;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  z-index:1200;
+  background:var(--ink);color:var(--white);
+  padding:.85rem 1.8rem;
+  font-size:.8rem;letter-spacing:.04em;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s,transform .28s;
+  white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ok{background:var(--ok);}
+
+/* ───────────────────────────────────────────
+   WA FLOAT
+─────────────────────────────────────────── */
+.wa{
+  position:fixed;bottom:1.8rem;right:1.8rem;z-index:600;
+  width:52px;height:52px;border-radius:50%;
+  background:#25D366;color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(37,211,102,.35);
+  transition:transform .22s;
+}
+.wa:hover{transform:scale(1.08);}
+
+/* ───────────────────────────────────────────
+   RESPONSIVE
+─────────────────────────────────────────── */
+@media(max-width:1100px){
+  .pgrid-4{grid-template-columns:repeat(3,1fr);}
+  .foot-top{grid-template-columns:1fr 1fr;}
+  .co-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .co-sum{position:static;}
+}
+@media(max-width:860px){
+  .nav-links{display:none;}
+  .ham{display:flex;}
+  .split{grid-template-columns:1fr;}
+  .split-copy{padding:3.5rem 2.5rem;}
+  .cat-strip{grid-template-columns:1fr;}
+  .cat-item{aspect-ratio:unset;min-height:280px;}
+  .reviews{grid-template-columns:1fr;}
+  .pgrid-4{grid-template-columns:repeat(2,1fr);}
+  .pgrid-3{grid-template-columns:repeat(2,1fr);}
+  .pdp-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .frow{grid-template-columns:1fr;}
+}
+@media(max-width:580px){
+  .hero-name{letter-spacing:.1em;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .hero-btns .btn{width:220px;justify-content:center;}
+  .pgrid-4,.pgrid-3{grid-template-columns:repeat(2,1fr);gap:.8rem;}
+  .wrap{padding:0 1.2rem;}
+  .nav-inner{padding:0 1.2rem;}
+  .split-copy{padding:2.5rem 1.5rem;}
+  .foot-top{grid-template-columns:1fr;padding:0 1.2rem 2.5rem;}
+  .foot-bottom{padding:1rem 1.2rem 0;flex-direction:column;gap:.8rem;text-align:center;}
+  .nl-form{flex-direction:column;}
+  .nl-input{border-right:1px solid rgba(255,255,255,.12);border-bottom:none;}
+  .shop-hero .wrap{flex-direction:column;align-items:flex-start;gap:.8rem;}
+  .cart-dr{width:100vw;}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">BAUL<span>-ISH</span></div>
-  <nav>
-    <button onclick="showSection('collection')">SHOP</button>
-    <button onclick="showSection('cart')">BAG (<span id="bagCount">0</span>)</button>
-  </nav>
-</header>
 
-<main>
-<section id="home">
-  <div class="hero">
-    <div>
-      <div class="kicker">Independent streetwear · Bangladesh</div>
-      <h1>Wear your<br>own story.</h1>
-      <p>Art in everyday form. Thoughtful essentials for those who dress with individuality, comfort, and character.</p>
-      <button class="btn" onclick="showSection('collection')">Explore collection ↗</button>
-    </div>
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85" alt="Minimal everyday T-shirt">
+<!-- TOPBAR -->
+<div class="topbar">Free delivery inside Dhaka on orders over ৳2,500 &nbsp;&nbsp;·&nbsp;&nbsp; Cash on Delivery Available Nationwide</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="wordmark" onclick="goPage('home')">BAUL<span class="dash">-</span>ISH</div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="goPage('home');return false;">Home</a></li>
+      <li><a href="#" onclick="goPage('shop');return false;">Shop</a></li>
+      <li><a href="#" onclick="goPage('home');setTimeout(()=>document.getElementById('spl').scrollIntoView({behavior:'smooth'}),80);return false;">Collections</a></li>
+      <li><a href="#" onclick="goPage('home');setTimeout(()=>document.getElementById('story').scrollIntoView({behavior:'smooth'}),80);return false;">Our Story</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-icon" onclick="openCart()">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count hide" id="ccnt">0</span>
+      </div>
+      <div class="ham" onclick="openMob()"><span></span><span></span><span></span></div>
     </div>
   </div>
-  <div class="marquee">LESS NOISE · MORE MEANING · BAUL-ISH STREETWEAR</div>
-</section>
+</nav>
 
-<section id="collection">
-  <div class="section-title"><div><div class="kicker">The collection</div><h2>Considered essentials.</h2></div></div>
-  <div class="products" id="productGrid"></div>
-</section>
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#" onclick="goPage('home');closeMob();return false;">Home</a>
+  <a href="#" onclick="goPage('shop');closeMob();return false;">Shop</a>
+  <a href="#" onclick="goPage('shop');closeMob();return false;">Collections</a>
+  <a href="#" onclick="closeMob();return false;">Our Story</a>
+  <span class="mob-wordmark">BAUL-ISH</span>
+</div>
 
-<section id="details" class="hidden"></section>
+<!-- ════════════════════════════════════
+     HOME
+════════════════════════════════════ -->
+<div class="page active" id="page-home">
 
-<section id="cart" class="hidden">
-  <button class="btn outline" onclick="showSection('collection')">← Continue shopping</button>
-  <div class="section-title"><div><div class="kicker">Your selection</div><h2>Your bag.</h2></div></div>
-  <div id="cartItems"></div>
-  <h3 id="cartTotal">Total: ৳0</h3>
-  <p class="muted">Delivery fee: ৳70 (sample rate; update before launch).</p>
-  <h3>Checkout</h3>
-  <form id="checkout">
-    <label>Full name</label><input name="name" required>
-    <label>Phone number</label><input name="phone" inputmode="tel" required>
-    <label>Delivery address</label><input name="address" required>
-    <label>Payment method</label>
-    <select name="payment"><option>Cash on Delivery</option><option disabled>bKash — configure after backend setup</option><option disabled>Nagad — configure after backend setup</option><option disabled>Bank Transfer — configure after backend setup</option></select>
-    <button class="btn" type="submit">Place demo order</button>
-    <p class="muted">Demo only: this GitHub Pages version does not transmit or save orders to a secure database.</p>
-  </form>
-</section>
-</main>
+  <section class="hero">
+    <h1 class="hero-name">BAUL<span class="h-dash">-</span>ISH</h1>
+    <div class="hero-sub-line">
+      <span class="hero-rule"></span>
+      <span class="hero-tagline">Wear the story you carry</span>
+      <span class="hero-rule"></span>
+    </div>
+    <div class="hero-btns">
+      <button class="btn btn-ivory" onclick="goPage('shop')">Shop the Collection</button>
+      <button class="btn btn-ghost-ivory" onclick="goPage('shop')">New Arrivals</button>
+    </div>
+  </section>
 
-<footer>
-  <div class="logo">BAUL<span>-ISH</span></div>
-  <p>Wear your own story.</p>
-  <p>Premium everyday streetwear. Bangladesh.</p>
-  <p>Contact · Shipping · Returns · Privacy</p>
-</footer>
-<div id="notice" class="notice"></div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="mq-item">Premium Streetwear <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Made for Bangladesh <span class="mq-sep">✦</span></span>
+      <span class="mq-item">SS 2026 Collection <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Cash on Delivery <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Oversized Tees <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Premium Polos <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Free Dhaka Delivery <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Premium Streetwear <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Made for Bangladesh <span class="mq-sep">✦</span></span>
+      <span class="mq-item">SS 2026 Collection <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Cash on Delivery <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Oversized Tees <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Premium Polos <span class="mq-sep">✦</span></span>
+      <span class="mq-item">Free Dhaka Delivery <span class="mq-sep">✦</span></span>
+    </div>
+  </div>
+
+  <!-- NEW ARRIVALS -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="sec-label">Just Dropped</span>
+          <h2 class="sec-title">New Arrivals</h2>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="goPage('shop')">View All</button>
+      </div>
+      <div class="pgrid pgrid-4" id="homeGrid"></div>
+    </div>
+  </section>
+
+  <!-- SPLIT FEATURED -->
+  <div class="split" id="spl">
+    <div class="split-visual">
+      <div class="split-visual-name">BAUL<br>ISH</div>
+    </div>
+    <div class="split-copy">
+      <span class="sec-label">Featured Drop</span>
+      <h2 class="sec-title">The Wanderer<br>Collection</h2>
+      <p>Inspired by the wandering Bauls of Bengal — mystic, free, unbound. Pieces designed for those who carry their stories like a second skin.</p>
+      <button class="btn btn-black" onclick="goPage('shop')">Shop the Drop</button>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="cat-strip">
+    <div class="cat-item" onclick="filterShop('tee')">
+      <div class="cat-item-bg cat-bg-1"></div>
+      <div class="cat-item-info">
+        <h3>Oversized Tees</h3>
+        <span>8 Styles</span>
+      </div>
+    </div>
+    <div class="cat-item" onclick="filterShop('polo')">
+      <div class="cat-item-bg cat-bg-2"></div>
+      <div class="cat-item-info">
+        <h3>Premium Polos</h3>
+        <span>6 Styles</span>
+      </div>
+    </div>
+    <div class="cat-item" onclick="filterShop('sweatshirt')">
+      <div class="cat-item-bg cat-bg-3"></div>
+      <div class="cat-item-info">
+        <h3>Sweatshirts</h3>
+        <span>4 Styles</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BESTSELLERS -->
+  <section class="sec" style="background:var(--g1);">
+    <div class="wrap">
+      <div class="sec-head" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="sec-label">Most Loved</span>
+          <h2 class="sec-title">Bestsellers</h2>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="goPage('shop')">View All</button>
+      </div>
+      <div class="pgrid pgrid-4" id="bestGrid"></div>
+    </div>
+  </section>
+
+  <!-- QUOTE STRIP -->
+  <div class="quote-sec" id="story">
+    <div class="wrap">
+      <p class="quote-text">"We make clothes for those who refuse to be ordinary — who carry their roots and their rebellion in equal measure."</p>
+      <p class="quote-attr">BAUL-ISH, Dhaka 2021</p>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="sec-sm">
+    <div class="wrap">
+      <div class="sec-head" style="text-align:center;margin-bottom:0;">
+        <span class="sec-label" style="display:block;text-align:center;">What People Say</span>
+        <h2 class="sec-title" style="text-align:center;margin-bottom:3rem;">Customer Stories</h2>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="review-item">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"International quality — seriously. The oversized tee fits perfectly and the fabric feels premium. Best Bangladeshi brand I've worn."</p>
+        <span class="r-name">Rafid A. — Dhaka</span>
+      </div>
+      <div class="review-item">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Finally a local brand that gets streetwear. Packaging was beautiful, delivery was fast. The polo is chef's kiss."</p>
+        <span class="r-name">Nusrat J. — Chittagong</span>
+      </div>
+      <div class="review-item">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Got compliments all day. The fit and colour are exact. This brand is going to be huge — I've been telling everyone."</p>
+        <span class="r-name">Tanvir H. — Sylhet</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="nl-sec">
+    <div class="wrap">
+      <h2 class="nl-title">Stay in the Loop.</h2>
+      <p class="nl-sub">Drop alerts, exclusive offers, and stories from the brand.</p>
+      <div class="nl-form">
+        <input class="nl-input" id="nlMail" type="email" placeholder="your@email.com">
+        <button class="nl-btn" onclick="nlSub()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="foot-wm">BAUL<span class="fd">-</span>ISH</span>
+        <span class="foot-tag">Wear the story you carry.</span>
+        <p class="foot-desc">Premium streetwear from Bangladesh, rooted in the spirit of the wandering Bauls. Made for those who move between worlds.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#" onclick="goPage('shop');return false;">All Products</a></li>
+          <li><a href="#" onclick="filterShop('tee');return false;">Oversized Tees</a></li>
+          <li><a href="#" onclick="filterShop('polo');return false;">Premium Polos</a></li>
+          <li><a href="#" onclick="filterShop('sweatshirt');return false;">Sweatshirts</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="https://wa.me/8801XXXXXXXXX">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 BAUL-ISH. All rights reserved.</span>
+      <div class="foot-socials">
+        <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════
+     SHOP
+════════════════════════════════════ -->
+<div class="page" id="page-shop">
+  <div class="shop-hero">
+    <div class="wrap">
+      <h1 class="shop-hero-name">BAUL<span class="sd">-</span>ISH</h1>
+      <span class="shop-hero-sub">SS 2026 Collection</span>
+    </div>
+  </div>
+  <div class="shop-body">
+    <div class="wrap">
+      <div class="shop-bar">
+        <div class="filters" id="filterBar">
+          <button class="fchip on" data-f="all">All</button>
+          <button class="fchip" data-f="tee">Tees</button>
+          <button class="fchip" data-f="polo">Polos</button>
+          <button class="fchip" data-f="sweatshirt">Sweatshirts</button>
+          <button class="fchip" data-f="sale">Sale</button>
+        </div>
+        <div class="shop-meta">
+          <span class="shop-ct" id="shopCt">—</span>
+          <select class="sort-sel" id="sortSel" onchange="renderShop()">
+            <option value="new">Newest</option>
+            <option value="asc">Price: Low–High</option>
+            <option value="desc">Price: High–Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="pgrid pgrid-3" id="shopGrid"></div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="foot-wm">BAUL<span class="fd">-</span>ISH</span>
+        <span class="foot-tag">Wear the story you carry.</span>
+      </div>
+      <div class="foot-col"><h5>Shop</h5><ul><li><a href="#" onclick="goPage('home');return false;">Home</a></li></ul></div>
+      <div class="foot-col"><h5>Help</h5><ul><li><a href="#">Contact</a></li></ul></div>
+      <div class="foot-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 BAUL-ISH.</span></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════
+     PDP
+════════════════════════════════════ -->
+<div class="page" id="page-pdp">
+  <div class="pdp-page">
+    <div class="wrap">
+      <p style="font-size:.7rem;color:var(--g3);margin-bottom:2rem;letter-spacing:.06em;">
+        <span style="cursor:pointer;" onclick="goPage('home')">Home</span> /
+        <span style="cursor:pointer;" onclick="goPage('shop')">Shop</span> /
+        <span id="pdpCrumb">Product</span>
+      </p>
+      <div class="pdp-grid">
+        <div class="pdp-gallery">
+          <div class="pdp-main" id="pdpMain">
+            <span class="pdp-main-name" id="pdpMainLetter">B</span>
+          </div>
+          <div class="pdp-thumbs" id="pdpThumbs"></div>
+        </div>
+        <div id="pdpInfo"></div>
+      </div>
+      <div style="margin-top:5rem;">
+        <span class="sec-label" style="display:block;margin-bottom:.8rem;">You May Also Like</span>
+        <h2 class="sec-title" style="margin-bottom:2.5rem;">Related Products</h2>
+        <div class="pgrid pgrid-4" id="relGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     CHECKOUT
+════════════════════════════════════ -->
+<div class="page" id="page-checkout">
+  <div class="co-page">
+    <div class="co-hd">
+      <div class="wrap">
+        <p style="font-size:.7rem;color:var(--g3);margin-bottom:.5rem;cursor:pointer;letter-spacing:.06em;" onclick="goPage('home')">← Continue Shopping</p>
+        <h1>Checkout</h1>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="co-layout">
+        <div>
+          <div class="co-sec">
+            <h2 class="co-sec-t">Customer Information</h2>
+            <div class="frow">
+              <div class="fg"><label class="fl">Full Name *</label><input class="fi" id="coN" type="text" placeholder="Your full name"></div>
+              <div class="fg"><label class="fl">Phone *</label><input class="fi" id="coP" type="tel" placeholder="01XXXXXXXXX"></div>
+            </div>
+            <div class="fg"><label class="fl">Email (optional)</label><input class="fi" id="coE" type="email" placeholder="your@email.com"></div>
+          </div>
+          <div class="co-sec">
+            <h2 class="co-sec-t">Delivery Address</h2>
+            <div class="fg"><label class="fl">District *</label>
+              <select class="fs" id="coDist" onchange="onDistChange()">
+                <option value="">Select district</option>
+                <option value="dhaka">Dhaka</option>
+                <option value="outside">Outside Dhaka</option>
+              </select>
+            </div>
+            <div class="fg"><label class="fl">Full Address *</label><textarea class="fi" id="coAddr" rows="3" placeholder="House, Road, Area, City"></textarea></div>
+          </div>
+          <div class="co-sec">
+            <h2 class="co-sec-t">Delivery</h2>
+            <div class="del-opts">
+              <label class="del-opt">
+                <div class="del-opt-l"><input type="radio" name="del" value="inside" checked onchange="onDelChange(this)"><div><div class="del-opt-n">Inside Dhaka</div><div class="del-opt-s">1–2 working days</div></div></div>
+                <span class="del-opt-p">৳60</span>
+              </label>
+              <label class="del-opt">
+                <div class="del-opt-l"><input type="radio" name="del" value="outside" onchange="onDelChange(this)"><div><div class="del-opt-n">Outside Dhaka</div><div class="del-opt-s">3–5 working days via courier</div></div></div>
+                <span class="del-opt-p">৳120</span>
+              </label>
+            </div>
+          </div>
+          <div class="co-sec">
+            <h2 class="co-sec-t">Payment</h2>
+            <div class="pay-opts">
+              <label class="pay-opt"><input type="radio" name="pay" value="cod" checked><div><div class="pay-opt-n">Cash on Delivery</div><div class="pay-opt-s">Pay when your order arrives</div></div></label>
+              <label class="pay-opt" style="opacity:.45;pointer-events:none;"><input type="radio" name="pay" value="bkash" disabled><div><div class="pay-opt-n">bKash / Nagad / Rocket</div><div class="pay-opt-s">Coming soon</div></div></label>
+            </div>
+          </div>
+          <button class="btn btn-burg btn-full" onclick="placeOrder()" style="padding:1.1rem;font-size:.82rem;letter-spacing:.1em;margin-top:.5rem;">Place Order</button>
+          <p style="font-size:.68rem;color:var(--g3);text-align:center;margin-top:.7rem;">By placing your order you agree to our terms of service.</p>
+        </div>
+        <div class="co-sum">
+          <h2 class="co-sum-t">Order Summary</h2>
+          <div id="coItems"></div>
+          <div class="cpn-row"><input class="cpn-i" id="cpnCode" type="text" placeholder="Coupon code"><button class="cpn-b" onclick="applyCpn()">Apply</button></div>
+          <p id="cpnMsg" style="font-size:.68rem;margin-bottom:.8rem;"></p>
+          <div class="co-line"><span>Subtotal</span><span id="coSub">৳0</span></div>
+          <div class="co-line"><span>Delivery</span><span id="coDel">৳60</span></div>
+          <div class="co-line" id="coDiscRow" style="display:none;"><span>Discount</span><span id="coDisc" style="color:#B03030;">-৳0</span></div>
+          <div class="co-tot-row"><span>Total</span><span id="coTot">৳0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     CONFIRMATION
+════════════════════════════════════ -->
+<div class="page" id="page-confirm">
+  <div class="conf-page">
+    <div class="wrap" style="text-align:center;">
+      <div class="conf-check"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <p class="conf-order" id="confNum">Order #</p>
+      <h1 class="conf-title">Thank you!</h1>
+      <p class="conf-sub">Your order is placed. We'll call to confirm your delivery details soon.</p>
+      <div class="conf-box" id="confBox"></div>
+      <div class="conf-btns">
+        <button class="btn btn-black" onclick="goPage('home')">Continue Shopping</button>
+        <a class="btn btn-ghost" href="https://wa.me/8801XXXXXXXXX" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-ov" id="cartOv" onclick="closeCart()"></div>
+<div class="cart-dr" id="cartDr">
+  <div class="cart-hd">
+    <span class="cart-title">Your Bag</span>
+    <button class="cart-x" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-ft" id="cartFt" style="display:none;">
+    <div class="cart-sub"><span>Subtotal</span><span id="cartSub">৳0</span></div>
+    <p class="cart-note-txt">Delivery calculated at checkout</p>
+    <button class="btn btn-black btn-full" onclick="toCheckout()" style="margin-bottom:.7rem;padding:.95rem;">Checkout</button>
+    <button class="btn btn-ghost btn-full" onclick="closeCart()" style="padding:.8rem;">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- WA -->
+<a class="wa" href="https://wa.me/8801XXXXXXXXX" target="_blank">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.12 1.533 5.851L.057 23.571a.5.5 0 00.622.622l5.817-1.455A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 01-5.008-1.373l-.357-.213-3.713.929.949-3.62-.233-.372A9.818 9.818 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182c5.422 0 9.818 4.396 9.818 9.818 0 5.422-4.396 9.818-9.818 9.818z"/></svg>
+</a>
 
 <script>
-const DELIVERY_FEE=70;
-const products=[
-{id:"tee-01",name:"Essential Oversized Tee",price:490,offer:390,description:"A relaxed everyday silhouette. Minimal, versatile, and made for effortless styling.",image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:390,stock:10},"L":{price:390,stock:10},"XL":{price:440,stock:10}}},
-{id:"tee-02",name:"Everyday Classic Tee",price:520,offer:450,description:"A clean staple designed to fit naturally into your everyday wardrobe.",image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:450,stock:8},"L":{price:450,stock:8},"XL":{price:490,stock:8}}},
-{id:"tee-03",name:"Signature Graphic Tee",price:550,offer:490,description:"A contemporary graphic piece for an understated streetwear look.",image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=85",sizes:{"M":{price:490,stock:5},"L":{price:490,stock:5},"XL":{price:540,stock:5}}}
+/* ── DATA ── */
+const PRODS = [
+  {id:1,name:'Wanderer Oversized Tee',cat:'tee',badge:'new',price:1490,sale:null,
+   desc:'Relaxed-fit heavyweight tee in 280gsm combed cotton. Drop shoulder, boxy cut.',
+   fabric:'100% Combed Cotton, 280gsm',fit:'Oversized / Drop Shoulder',
+   care:'Machine wash cold, tumble dry low',
+   sizes:{S:5,M:8,L:6,XL:3,XXL:0},colors:['#111','#F2EDE4','#6F263D'],tags:['new','bestseller']},
+  {id:2,name:'Baul Spirit Polo',cat:'polo',badge:'best',price:1890,sale:null,
+   desc:'Premium pique polo. Two-button placket, ribbed collar and cuffs.',
+   fabric:'100% Pique Cotton, 240gsm',fit:'Regular / Tailored',
+   care:'Machine wash cold, hang dry',
+   sizes:{S:3,M:10,L:7,XL:4,XXL:1},colors:['#111','#2d4a3e','#6F263D'],tags:['bestseller']},
+  {id:3,name:'Freedom Sweatshirt',cat:'sweatshirt',badge:'new',price:2290,sale:null,
+   desc:'Midweight fleece sweatshirt. Ribbed hem, cuffs and crew neck.',
+   fabric:'80% Cotton 20% Polyester, 320gsm',fit:'Slightly Oversized',
+   care:'Machine wash cold, tumble dry low',
+   sizes:{S:4,M:6,L:5,XL:2,XXL:0},colors:['#111','#1a2635'],tags:['new']},
+  {id:4,name:'Ekla Cholo Tee',cat:'tee',badge:'sale',price:1290,sale:990,
+   desc:'Named after Tagore\'s timeless call. Boxy fit, raw hemline detail.',
+   fabric:'100% Combed Cotton, 260gsm',fit:'Cropped Oversized',
+   care:'Machine wash cold, hang dry',
+   sizes:{S:2,M:4,L:1,XL:0,XXL:0},colors:['#F2EDE4','#111'],tags:['sale']},
+  {id:5,name:'Dhakai Classic Polo',cat:'polo',badge:null,price:1790,sale:null,
+   desc:'Minimal polo with subtle weave texture and mother-of-pearl buttons.',
+   fabric:'100% Mercerized Cotton, 220gsm',fit:'Slim Regular',
+   care:'Hand wash preferred',
+   sizes:{S:6,M:9,L:8,XL:5,XXL:2},colors:['#F2EDE4','#6F263D','#2d4a3e'],tags:['bestseller']},
+  {id:6,name:'Heritage Hoodie',cat:'sweatshirt',badge:'new',price:2590,sale:null,
+   desc:'Premium pullover hoodie. Kangaroo pocket, adjustable drawstring, double-lined hood.',
+   fabric:'85% Cotton 15% Polyester, 380gsm',fit:'Oversized / Relaxed',
+   care:'Machine wash cold, do not tumble dry',
+   sizes:{S:5,M:7,L:6,XL:3,XXL:1},colors:['#111','#2d4a3e'],tags:['new']},
+  {id:7,name:'Riverstone Tee',cat:'tee',badge:null,price:1490,sale:null,
+   desc:'Stone-washed heavyweight tee with faded vintage character.',
+   fabric:'100% Stone-Washed Cotton, 280gsm',fit:'Oversized',
+   care:'Machine wash cold, hang dry',
+   sizes:{S:4,M:8,L:7,XL:4,XXL:2},colors:['#888','#c8963a','#111'],tags:[]},
+  {id:8,name:'Monsoon Polo',cat:'polo',badge:'sale',price:1890,sale:1490,
+   desc:'Moisture-wicking pique for Dhaka\'s humid climate.',
+   fabric:'100% Performance Pique, 200gsm',fit:'Regular',
+   care:'Machine wash cool',
+   sizes:{S:3,M:5,L:4,XL:2,XXL:0},colors:['#2d4a3e','#111','#6F263D'],tags:['sale']},
 ];
-let cart=JSON.parse(localStorage.getItem("baulish_cart")||"[]");
-const money=n=>"৳"+Number(n).toLocaleString("en-BD");
-function notify(text){let n=document.getElementById("notice");n.textContent=text;n.style.display="block";setTimeout(()=>n.style.display="none",3000)}
-function showSection(id){
- ["home","collection","details","cart"].forEach(x=>document.getElementById(x).classList.add("hidden"));
- if(id==="collection"){document.getElementById("home").classList.remove("hidden");document.getElementById("collection").classList.remove("hidden")}
- else document.getElementById(id).classList.remove("hidden");
- if(id==="cart")renderCart();
- window.scrollTo({top:0,behavior:"smooth"});
+
+const COUPONS = {'BAUL10':.10,'WELCOME15':.15};
+const DEL_FEES = {inside:60,outside:120};
+
+/* ── STATE ── */
+let cart = JSON.parse(localStorage.getItem('bi_cart')||'[]');
+let shopFilter = 'all';
+let delCharge = 60;
+let cpnDisc = 0;
+let activeProd = null;
+let selSize = null;
+let selQty = 1;
+
+/* ── ROUTER ── */
+function goPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  window.scrollTo(0,0);
+  closeCart();
+  if(p==='home'){renderHome();}
+  if(p==='shop'){renderShop();}
+  if(p==='checkout'){renderCheckout();}
 }
-function renderProducts(){
- document.getElementById("productGrid").innerHTML=products.map(p=>`
- <article class="product">
- <img class="product-photo" src="${p.image}" alt="${p.name}" onclick="openProduct('${p.id}')">
- <h3 onclick="openProduct('${p.id}')">${p.name}</h3>
- <p><span class="price">${money(p.offer)}</span><span class="old">${money(p.price)}</span></p>
- <button class="btn outline" onclick="openProduct('${p.id}')">View product ↗</button>
- </article>`).join("");
+
+function filterShop(f){
+  shopFilter=f;
+  goPage('shop');
+  document.querySelectorAll('.fchip').forEach(c=>{
+    c.classList.toggle('on', c.dataset.f===f);
+  });
 }
-function openProduct(id){
- let p=products.find(x=>x.id===id);
- document.getElementById("details").innerHTML=`
- <button class="btn outline" onclick="showSection('collection')">← Collection</button>
- <div class="detail-layout">
- <img class="detail-image" src="${p.image}" alt="${p.name}">
- <div class="detail-info"><div class="kicker">BAUL-ISH essentials</div><h2>${p.name}</h2>
- <h3 id="detailPrice">${money(p.offer)}</h3><p>${p.description}</p>
- <label>Choose size</label><select id="size" onchange="updatePrice('${p.id}')">
- ${Object.entries(p.sizes).map(([s,v])=>`<option value="${s}" ${v.stock<=0?"disabled":""}>${s} — ${v.stock>0?v.stock+" available":"Sold out"}</option>`).join("")}
- </select>
- <label>Quantity</label><input id="qty" type="number" value="1" min="1" max="10">
- <button class="btn" onclick="addToCart('${p.id}')">Add to bag</button>
- <p>Secure checkout will be enabled after backend integration. Prices shown in BDT.</p>
- </div></div>`;
- showSection("details");updatePrice(id);
+
+/* ── CARD ── */
+function card(p){
+  const sp=p.sale;
+  const price = sp
+    ? `<span class="p-sale">৳${sp}</span><span class="p-was">৳${p.price}</span>`
+    : `<span class="p-now">৳${p.price}</span>`;
+  const badge = p.badge
+    ? `<span class="pcard-badge b-${p.badge==='new'?'new':p.badge==='best'?'best':'sale'}">${p.badge==='best'?'Bestseller':p.badge==='new'?'New':'Sale'}</span>`
+    : '';
+  const dots = p.colors.map(c=>`<span class="cdot" style="background:${c};border-color:${c==='#F2EDE4'?'#ddd':c}"></span>`).join('');
+  const letter = p.name[0];
+  return `<div class="pcard" onclick="openPdp(${p.id})">
+    <div class="pcard-img">
+      <div class="pcard-img-inner">
+        <span class="pcard-img-letter">${letter}</span>
+        <span class="pcard-img-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 7h4l2-4h6l2 4h4"/><path d="M3 7v14h18V7"/></svg></span>
+      </div>
+      ${badge}
+      <div class="pcard-hover">
+        <button class="atc" onclick="quickAdd(event,${p.id})">Add to Bag</button>
+        <button onclick="openPdp(${p.id});event.stopPropagation()">View</button>
+      </div>
+    </div>
+    <div class="pcard-info">
+      <div class="pcard-cat">BAUL-ISH · ${p.cat.toUpperCase()}</div>
+      <div class="pcard-name">${p.name}</div>
+      <div class="pcard-price">${price}</div>
+      <div class="pcard-dots">${dots}</div>
+    </div>
+  </div>`;
 }
-function updatePrice(id){
- let p=products.find(x=>x.id===id),s=document.getElementById("size").value;
- document.getElementById("detailPrice").textContent=money(p.sizes[s].price);
+
+/* ── HOME ── */
+function renderHome(){
+  const na = PRODS.filter(p=>p.tags.includes('new')).slice(0,4);
+  document.getElementById('homeGrid').innerHTML = na.map(card).join('');
+  const bs = PRODS.filter(p=>p.tags.includes('bestseller')).slice(0,4);
+  document.getElementById('bestGrid').innerHTML = bs.map(card).join('');
 }
-function addToCart(id){
- let p=products.find(x=>x.id===id),size=document.getElementById("size").value;
- let quantity=Number(document.getElementById("qty").value);
- if(!Number.isInteger(quantity)||quantity<1||quantity>10)return notify("Please choose a valid quantity.");
- if(quantity>p.sizes[size].stock)return notify("Not enough stock for this size.");
- let item=cart.find(x=>x.id===id&&x.size===size);
- if(item){if(item.quantity+quantity>p.sizes[size].stock)return notify("Not enough stock.");item.quantity+=quantity}
- else cart.push({id,size,quantity});
- saveCart();notify("Added to your bag.");showSection("cart");
+
+/* ── SHOP ── */
+function renderShop(){
+  let ps = [...PRODS];
+  if(shopFilter!=='all'){
+    if(shopFilter==='sale') ps=ps.filter(p=>p.tags.includes('sale'));
+    else ps=ps.filter(p=>p.cat===shopFilter);
+  }
+  const s = document.getElementById('sortSel').value;
+  if(s==='asc') ps.sort((a,b)=>(a.sale||a.price)-(b.sale||b.price));
+  if(s==='desc') ps.sort((a,b)=>(b.sale||b.price)-(a.sale||a.price));
+  document.getElementById('shopCt').textContent = ps.length+' products';
+  document.getElementById('shopGrid').innerHTML = ps.map(card).join('');
 }
-function saveCart(){localStorage.setItem("baulish_cart",JSON.stringify(cart));document.getElementById("bagCount").textContent=cart.reduce((n,x)=>n+x.quantity,0)}
-function renderCart(){
- let total=0,html="";
- cart.forEach((item,i)=>{
- let p=products.find(x=>x.id===item.id);if(!p)return;
- let unit=p.sizes[item.size].price;total+=unit*item.quantity;
- html+=`<div class="cart-item"><div><b>${p.name}</b><p>Size: ${item.size} · ${money(unit)} × ${item.quantity}</p>
- <button class="btn outline" onclick="changeQty(${i},-1)">−</button> <button class="btn outline" onclick="changeQty(${i},1)">+</button> <button class="btn outline" onclick="removeItem(${i})">Remove</button></div><b>${money(unit*item.quantity)}</b></div>`;
- });
- document.getElementById("cartItems").innerHTML=html||"<p>Your bag is empty.</p>";
- document.getElementById("cartTotal").textContent="Total: "+money(total+DELIVERY_FEE);
-}
-function changeQty(i,d){
- let item=cart[i],p=products.find(x=>x.id===item.id),stock=p.sizes[item.size].stock;
- if(d>0&&item.quantity>=stock)return notify("Stock limit reached.");
- item.quantity+=d;if(item.quantity<1)cart.splice(i,1);saveCart();renderCart();
-}
-function removeItem(i){cart.splice(i,1);saveCart();renderCart()}
-document.getElementById("checkout").addEventListener("submit",e=>{
- e.preventDefault();
- notify("Demo only: connect a secure backend before accepting real orders.");
+
+document.getElementById('filterBar').addEventListener('click',e=>{
+  const c=e.target.closest('.fchip');
+  if(!c) return;
+  shopFilter=c.dataset.f;
+  document.querySelectorAll('.fchip').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');
+  renderShop();
 });
-renderProducts();saveCart();
+
+/* ── PDP ── */
+function openPdp(id){
+  const p=PRODS.find(x=>x.id===id);
+  if(!p) return;
+  activeProd=p; selSize=null; selQty=1;
+  document.getElementById('pdpCrumb').textContent=p.name;
+  document.getElementById('pdpMainLetter').textContent=p.name[0];
+  // thumbs: colour swatches
+  document.getElementById('pdpThumbs').innerHTML = p.colors.slice(0,3).map((c,i)=>
+    `<div class="pdp-thumb ${i===0?'on':''}" style="background:${c}" onclick="(function(el){document.querySelectorAll('.pdp-thumb').forEach(t=>t.classList.remove('on'));el.classList.add('on');})(this)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${c==='#F2EDE4'?'#aaa':'rgba(255,255,255,.3)'}" stroke-width="1"><path d="M3 7h4l2-4h6l2 4h4"/><path d="M3 7v14h18V7"/></svg>
+    </div>`).join('');
+  // price
+  const sp=p.sale;
+  const priceHtml=sp
+    ? `<span class="p-now" style="font-size:1.5rem;">৳${sp}</span><span class="p-was" style="font-size:1.1rem;">৳${p.price}</span>`
+    : `<span class="p-now" style="font-size:1.5rem;">৳${p.price}</span>`;
+  const szbts=Object.entries(p.sizes).map(([sz,st])=>
+    `<button class="sz ${st===0?'oos':''}" data-s="${sz}" onclick="pickSz(this,'${sz}',${st})">${sz}${st===0?'<br><small style="font-size:.5rem;">OOS</small>':''}</button>`).join('');
+  const colDots=p.colors.map(c=>`<span class="cdot" style="background:${c};width:18px;height:18px;border-color:${c==='#F2EDE4'?'#ddd':c}"></span>`).join('');
+  document.getElementById('pdpInfo').innerHTML=`
+    <p class="pdp-brand-tag">BAUL-ISH &nbsp;·&nbsp; ${p.cat.toUpperCase()}</p>
+    <h1 class="pdp-name">${p.name}</h1>
+    <div class="pdp-price">${priceHtml}</div>
+    <div class="pcard-dots" style="gap:.4rem;margin-bottom:1.5rem;">${colDots}</div>
+    <hr class="pdp-div">
+    <div class="size-row">
+      <span>Select Size</span>
+      <span class="size-guide" onclick="toast('Size guide: S=38 M=40 L=42 XL=44 XXL=46 (inches chest)')">Size Guide</span>
+    </div>
+    <div class="sizes" id="szBtns">${szbts}</div>
+    <div class="qty-wrap">
+      <span class="qty-label">Qty</span>
+      <div class="qty-ctrl">
+        <button class="qty-b" onclick="chQty(-1)">−</button>
+        <input class="qty-n" id="qtyN" type="number" value="1" min="1" max="10" readonly>
+        <button class="qty-b" onclick="chQty(1)">+</button>
+      </div>
+    </div>
+    <div class="pdp-ctas">
+      <button class="btn btn-black btn-full" onclick="pdpAdd()">Add to Bag</button>
+      <button class="btn btn-burg btn-full" onclick="pdpBuy()">Buy Now</button>
+    </div>
+    <div class="pdp-meta-list">
+      <div class="pdp-meta-item"><span class="pdp-meta-k">Fabric</span><span>${p.fabric}</span></div>
+      <div class="pdp-meta-item"><span class="pdp-meta-k">Fit</span><span>${p.fit}</span></div>
+      <div class="pdp-meta-item"><span class="pdp-meta-k">Origin</span><span>Made in Bangladesh</span></div>
+    </div>
+    <div class="acc">
+      <div class="acc-row"><button class="acc-hd" onclick="togAcc(this)">Description<span class="acc-ico">+</span></button><div class="acc-bd">${p.desc}</div></div>
+      <div class="acc-row"><button class="acc-hd" onclick="togAcc(this)">Care<span class="acc-ico">+</span></button><div class="acc-bd">${p.care}</div></div>
+      <div class="acc-row"><button class="acc-hd" onclick="togAcc(this)">Shipping & Returns<span class="acc-ico">+</span></button><div class="acc-bd">Inside Dhaka ৳60 (free over ৳2,500). Outside Dhaka ৳120. 7-day returns on unused items with tags.</div></div>
+    </div>`;
+  // related
+  const rel=PRODS.filter(x=>x.id!==id&&x.cat===p.cat).slice(0,4);
+  document.getElementById('relGrid').innerHTML=(rel.length?rel:PRODS.slice(0,4)).map(card).join('');
+  goPage('pdp');
+}
+
+function pickSz(btn,sz,st){
+  if(st===0) return;
+  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  selSize=sz;
+}
+function chQty(d){selQty=Math.max(1,Math.min(10,selQty+d));document.getElementById('qtyN').value=selQty;}
+function togAcc(hd){hd.closest('.acc-row').classList.toggle('open');}
+function pdpAdd(){if(!selSize){toast('Please select a size');return;}addCart(activeProd,selSize,selQty);}
+function pdpBuy(){if(!selSize){toast('Please select a size');return;}addCart(activeProd,selSize,selQty);toCheckout();}
+function quickAdd(e,id){
+  e.stopPropagation();
+  const p=PRODS.find(x=>x.id===id);
+  const def=Object.entries(p.sizes).find(([,s])=>s>0);
+  if(!def){toast('Out of stock');return;}
+  addCart(p,def[0],1);
+}
+
+/* ── CART ── */
+function addCart(p,size,qty){
+  const k=p.id+'-'+size;
+  const ex=cart.find(i=>i.k===k);
+  if(ex) ex.qty=Math.min(ex.qty+qty,10);
+  else cart.push({k,id:p.id,name:p.name,size,qty,price:p.sale||p.price});
+  saveCart();renderCart();
+  toast(p.name+' added to bag','ok');
+  openCart();
+}
+function saveCart(){
+  localStorage.setItem('bi_cart',JSON.stringify(cart));
+  const n=cart.reduce((a,i)=>a+i.qty,0);
+  const el=document.getElementById('ccnt');
+  el.textContent=n;el.classList.toggle('hide',n===0);
+}
+function renderCart(){
+  const body=document.getElementById('cartBody');
+  const ft=document.getElementById('cartFt');
+  if(!cart.length){
+    body.innerHTML=`<div class="cart-empty-state"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Your bag is empty</p><small>Add something beautiful.</small></div>`;
+    ft.style.display='none';return;
+  }
+  body.innerHTML=cart.map(i=>`<div class="c-item">
+    <div class="c-item-img">BAUL-ISH</div>
+    <div class="c-item-info">
+      <div class="c-item-n">${i.name}</div>
+      <div class="c-item-m">Size: ${i.size}</div>
+      <div class="c-item-p">৳${i.price}</div>
+      <div class="c-item-acts">
+        <div class="c-qty">
+          <button onclick="updQty('${i.k}',-1)">−</button>
+          <span>${i.qty}</span>
+          <button onclick="updQty('${i.k}',1)">+</button>
+        </div>
+        <span class="c-rm" onclick="rmItem('${i.k}')">Remove</span>
+      </div>
+    </div>
+  </div>`).join('');
+  ft.style.display='block';
+  const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);
+  document.getElementById('cartSub').textContent='৳'+sub.toLocaleString();
+}
+function updQty(k,d){
+  const i=cart.find(x=>x.k===k);
+  if(!i)return;i.qty=Math.max(1,Math.min(10,i.qty+d));
+  saveCart();renderCart();
+}
+function rmItem(k){cart=cart.filter(i=>i.k!==k);saveCart();renderCart();}
+function openCart(){document.getElementById('cartDr').classList.add('open');document.getElementById('cartOv').classList.add('open');}
+function closeCart(){document.getElementById('cartDr').classList.remove('open');document.getElementById('cartOv').classList.remove('open');}
+function toCheckout(){if(!cart.length){toast('Your bag is empty');return;}closeCart();goPage('checkout');}
+
+/* ── CHECKOUT ── */
+function renderCheckout(){
+  cpnDisc=0;
+  document.getElementById('cpnCode').value='';
+  document.getElementById('cpnMsg').textContent='';
+  document.getElementById('coDiscRow').style.display='none';
+  document.getElementById('coItems').innerHTML=cart.map(i=>`
+    <div class="co-item">
+      <div class="co-item-img">BI</div>
+      <div><div class="co-item-n">${i.name}</div><div class="co-item-m">Size: ${i.size} · Qty: ${i.qty}</div></div>
+      <span class="co-item-p">৳${(i.price*i.qty).toLocaleString()}</span>
+    </div>`).join('');
+  updTotals();
+}
+function updTotals(){
+  const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);
+  const disc=Math.round(sub*cpnDisc);
+  const tot=sub+delCharge-disc;
+  document.getElementById('coSub').textContent='৳'+sub.toLocaleString();
+  document.getElementById('coDel').textContent='৳'+delCharge;
+  document.getElementById('coDisc').textContent='-৳'+disc.toLocaleString();
+  document.getElementById('coTot').textContent='৳'+tot.toLocaleString();
+}
+function onDistChange(){
+  const v=document.getElementById('coDist').value;
+  if(v==='dhaka'){delCharge=60;document.querySelector('[name=del][value=inside]').checked=true;}
+  else if(v==='outside'){delCharge=120;document.querySelector('[name=del][value=outside]').checked=true;}
+  updTotals();
+}
+function onDelChange(r){delCharge=r.value==='inside'?60:120;updTotals();}
+function applyCpn(){
+  const c=document.getElementById('cpnCode').value.trim().toUpperCase();
+  const msg=document.getElementById('cpnMsg');
+  if(COUPONS[c]){
+    cpnDisc=COUPONS[c];
+    msg.textContent='✓ '+(cpnDisc*100)+'% discount applied!';
+    msg.style.color='var(--ok)';
+    document.getElementById('coDiscRow').style.display='flex';
+  } else {
+    cpnDisc=0;
+    msg.textContent='Invalid coupon code.';
+    msg.style.color='#B03030';
+    document.getElementById('coDiscRow').style.display='none';
+  }
+  updTotals();
+}
+function placeOrder(){
+  const n=document.getElementById('coN').value.trim();
+  const ph=document.getElementById('coP').value.trim();
+  const dist=document.getElementById('coDist').value;
+  const addr=document.getElementById('coAddr').value.trim();
+  if(!n){toast('Please enter your name');return;}
+  if(!ph||ph.length<10){toast('Please enter a valid phone number');return;}
+  if(!dist){toast('Please select your district');return;}
+  if(!addr){toast('Please enter your delivery address');return;}
+  const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);
+  const disc=Math.round(sub*cpnDisc);
+  const tot=sub+delCharge-disc;
+  const oNum='BLI-'+Date.now().toString().slice(-6);
+  const ord={oNum,n,ph,addr,dist,tot,items:[...cart]};
+  const saved=JSON.parse(localStorage.getItem('bi_orders')||'[]');
+  saved.push(ord);localStorage.setItem('bi_orders',JSON.stringify(saved));
+  cart=[];saveCart();renderCart();
+  showConf(ord);
+}
+function showConf(o){
+  document.getElementById('confNum').textContent='Order '+o.oNum;
+  document.getElementById('confBox').innerHTML=`
+    <div class="conf-row"><span class="conf-k">Order</span><span>${o.oNum}</span></div>
+    <div class="conf-row"><span class="conf-k">Name</span><span>${o.n}</span></div>
+    <div class="conf-row"><span class="conf-k">Phone</span><span>${o.ph}</span></div>
+    <div class="conf-row"><span class="conf-k">Address</span><span>${o.addr}</span></div>
+    <div class="conf-row"><span class="conf-k">Delivery</span><span>${o.dist==='dhaka'?'Inside Dhaka':'Outside Dhaka'}</span></div>
+    <div class="conf-row"><span class="conf-k">Payment</span><span>Cash on Delivery</span></div>
+    <div class="conf-row"><span class="conf-k">Total</span><span style="font-weight:500;">৳${o.tot.toLocaleString()}</span></div>`;
+  goPage('confirm');
+}
+
+/* ── MOBILE NAV ── */
+function openMob(){document.getElementById('mobNav').classList.add('open');}
+function closeMob(){document.getElementById('mobNav').classList.remove('open');}
+
+/* ── NEWSLETTER ── */
+function nlSub(){
+  const v=document.getElementById('nlMail').value.trim();
+  if(!v.includes('@')){toast('Please enter a valid email');return;}
+  toast('Subscribed — welcome to BAUL-ISH!','ok');
+  document.getElementById('nlMail').value='';
+}
+
+/* ── TOAST ── */
+let tTimer;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  clearTimeout(tTimer);tTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+/* ── INIT ── */
+renderHome();renderCart();saveCart();
 </script>
 </body>
-</html>
+ </html>
